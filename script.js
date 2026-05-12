@@ -54,6 +54,13 @@ function applyConfig() {
     if (el) { el.dataset.target = val; el.textContent = '0'; }
   });
 
+  if (Array.isArray(cfg.hiddenServices)) {
+    cfg.hiddenServices.forEach(name => {
+      const card = document.querySelector(`.card[data-service="${name}"]`);
+      if (card) card.style.display = 'none';
+    });
+  }
+
   if (Array.isArray(cfg.gallery)) {
     cfg.gallery.forEach((item, i) => {
       const wrapper = document.getElementById(`galleryItem${i}`);
