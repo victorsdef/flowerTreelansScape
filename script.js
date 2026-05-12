@@ -2,6 +2,117 @@
    script.js — No necesitas tocar este archivo
 ════════════════════════════════════════ */
 
+/* ── Testimonios ── */
+const reviews = [
+  { name:"Maria G.",      stars:5, service:"Creacion de Jardin",         text:"Completaron la transformacion de nuestro patio. Era un desastre — ahora es el jardin mas bonito de la cuadra. Muy recomendado!" },
+  { name:"Carlos R.",     stars:5, service:"Corte de Cesped",            text:"Super profesionales, siempre a tiempo y el cesped se ve increible cada semana. La mejor inversion para nuestra casa." },
+  { name:"Ana L.",        stars:5, service:"Limpieza de Patio",          text:"Hicieron una limpieza completa antes del invierno y quedo impecable. Precio justo y resultados increibles." },
+  { name:"Jorge M.",      stars:5, service:"Poda de Arbustos",           text:"Podaron todos mis arbustos y quedaron perfectos. Se nota que saben lo que hacen. Los voy a contratar cada mes." },
+  { name:"Patricia S.",   stars:4, service:"Mantenimiento de Jardin",    text:"Muy buen servicio, puntuales y profesionales. El jardin luce mucho mejor. Solo quisiera que avisaran antes de llegar." },
+  { name:"Roberto D.",    stars:5, service:"Plantacion de Arboles",      text:"Plantaron tres arboles en mi patio y los colocaron exactamente donde los queria. Servicio excelente de principio a fin." },
+  { name:"Luisa F.",      stars:4, service:"Eliminacion de Maleza",      text:"Se encargaron de toda la maleza que tenia invadiendo mi jardin. Muy buen trabajo, aunque tardaron un poco mas de lo esperado." },
+  { name:"David T.",      stars:5, service:"Patios de Piedra",           text:"Instalaron un patio de piedra hermoso en mi jardin. La calidad del trabajo es excelente. Mis vecinos me preguntan quien lo hizo." },
+  { name:"Sandra V.",     stars:3, service:"Corte de Cesped",            text:"El trabajo estuvo bien pero llegaron tarde. El resultado fue aceptable, esperaba un poco mas de cuidado en los bordes." },
+  { name:"Miguel A.",     stars:5, service:"Eliminacion de Arboles",     text:"Removieron un arbol enorme de forma segura y rapida. Dejaron el area completamente limpia. Profesionales de verdad." },
+  { name:"Carmen O.",     stars:5, service:"Riego e Instalacion",        text:"Instalaron todo el sistema de riego y ahora mi jardin se mantiene solo. Trabajo limpio y muy bien explicado." },
+  { name:"Eduardo B.",    stars:4, service:"Limpieza de Terreno",        text:"Limpiaron un terreno grande que tenia lleno de maleza. Buen trabajo general aunque dejaron algunos restos al fondo." },
+  { name:"Gabriela R.",   stars:5, service:"Creacion de Jardin",         text:"Disenaron mi jardin desde cero y quedo exactamente como lo soné. Son verdaderos artistas del paisajismo." },
+  { name:"Fernando C.",   stars:5, service:"Mantenimiento Mensual",      text:"Llevan 8 meses viniendo cada mes y el jardin siempre luce perfecto. Son confiables y serios. 100% recomendados." },
+  { name:"Monica P.",     stars:4, service:"Poda de Plantas",            text:"Podaron todas las plantas de mi jardin y quedaron muy bien formadas. Me gustaria que ofrecieran mas opciones de horario." },
+  { name:"Andres H.",     stars:5, service:"Corte de Cesped",            text:"El mejor servicio de jardineria que he contratado. Rapidos, limpios y el precio es muy justo. Los recomiendo sin dudarlo." },
+  { name:"Isabella M.",   stars:5, service:"Patios de Piedra",           text:"Mi patio exterior luce como de revista. El trabajo con las piedras fue impecable. Vale cada centavo invertido." },
+  { name:"Ricardo L.",    stars:3, service:"Limpieza de Patio",          text:"Hicieron la limpieza pero no recogieron bien los desechos. Tuve que limpiar algunas cosas despues. El precio estuvo bien." },
+  { name:"Valeria N.",    stars:5, service:"Plantacion de Arboles",      text:"Plantaron un arbol frutal y me explicaron perfectamente como cuidarlo. Muy amables y conocedores." },
+  { name:"Oscar G.",      stars:4, service:"Eliminacion de Maleza",      text:"Trabajo efectivo, maleza eliminada completamente. Quisiera que dieran algun producto preventivo despues del trabajo." },
+  { name:"Teresa J.",     stars:5, service:"Creacion de Jardin",         text:"Transformaron mi jardin muerto en un espacio verde hermoso. Son creativos, responsables y muy prolijos en su trabajo." },
+  { name:"Pablo E.",      stars:5, service:"Mantenimiento de Jardin",    text:"Puntuales, trabajadores y dejan todo limpio al terminar. Es un placer tenerlos trabajando en casa." },
+  { name:"Natalia W.",    stars:4, service:"Riego e Instalacion",        text:"Buen trabajo de instalacion. El sistema funciona muy bien. Tomaron un dia mas de lo prometido pero el resultado fue bueno." },
+  { name:"Luis K.",       stars:5, service:"Corte de Cesped",            text:"Llevan cortando mi cesped 6 meses y siempre esta perfecto. Nunca han fallado ni llegado tarde. Excelente servicio." },
+  { name:"Diana Q.",      stars:5, service:"Poda de Arbustos",           text:"Mis arbustos quedaron increiblemente bien formados. El jardin parece otro. Muy profesionales y amables." },
+  { name:"Hector Z.",     stars:4, service:"Eliminacion de Arboles",     text:"Removieron el arbol sin problemas. Trabajo seguro y eficiente. Me gustaria que el precio fuera un poco mas flexible." },
+  { name:"Sofia X.",      stars:5, service:"Patios de Piedra",           text:"El patio de piedra que instalaron es exactamente lo que queria. Calidad de primer nivel y terminacion perfecta." },
+  { name:"Marcos Y.",     stars:3, service:"Mantenimiento de Jardin",    text:"El jardin quedo bien pero tuve que llamarlos dos veces para que regresaran a terminar una parte que habian dejado incompleta." },
+  { name:"Elena U.",      stars:5, service:"Creacion de Jardin",         text:"Me dieron ideas que nunca se me hubieran ocurrido y el resultado supero todas mis expectativas. Artistas totales." },
+  { name:"Steven R.",     stars:5, service:"Corte de Cesped",            text:"Fast, professional and the lawn looks amazing every time. Highly recommended for anyone in the area!" },
+  { name:"Jennifer T.",   stars:4, service:"Yard Cleanup",               text:"They did a great job cleaning up the yard. Took a bit longer than expected but the result was worth it." },
+  { name:"Michael B.",    stars:5, service:"Tree Removal",               text:"Removed two large trees safely and cleaned everything up. Outstanding work and very fair pricing." },
+  { name:"Ashley C.",     stars:5, service:"Garden Design",              text:"Designed my entire backyard and it looks absolutely stunning. Best investment I have made for my home." },
+  { name:"Kevin D.",      stars:4, service:"Irrigation Install",         text:"Good installation work. The system works perfectly. They took an extra day but communicated well throughout." },
+  { name:"Stephanie F.",  stars:5, service:"Lawn Mowing",                text:"These guys are amazing. My lawn has never looked better. They show up on time every single week." },
+  { name:"Brian H.",      stars:3, service:"Yard Cleanup",               text:"Work was okay but they missed a section in the back corner. Had to point it out for them to come back and fix it." },
+  { name:"Amanda I.",     stars:5, service:"Stone Patio",                text:"The stone patio they built is absolutely gorgeous. Everyone who visits comments on how beautiful it looks." },
+  { name:"Chris J.",      stars:5, service:"Bush Trimming",              text:"Trimmed all my bushes perfectly. The yard looks so clean and well-maintained now. Will definitely use again." },
+  { name:"Rachel K.",     stars:4, service:"Weed Removal",               text:"They got rid of all the weeds that were taking over my garden. Good job overall, just wish they had come earlier." },
+  { name:"Daniel M.",     stars:5, service:"Tree Planting",              text:"Planted three trees exactly where I wanted them and explained how to care for each one. Fantastic service!" }
+];
+
+function starsHTML(n) {
+  return Array.from({length:5}, (_,i) =>
+    `<span style="color:${i < n ? '#fbbf24' : 'rgba(255,255,255,0.2)'}">★</span>`
+  ).join('');
+}
+
+function buildCarousel() {
+  const track  = document.getElementById('testiTrack');
+  const dots   = document.getElementById('testiDots');
+  const total  = document.getElementById('testiTotal');
+  const prev   = document.getElementById('testiPrev');
+  const next   = document.getElementById('testiNext');
+  if (!track) return;
+
+  total.textContent = `Basado en ${reviews.length} resenas`;
+
+  const PER_PAGE = window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+  const pages    = Math.ceil(reviews.length / PER_PAGE);
+  let   current  = 0;
+
+  reviews.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'testi-card';
+    card.innerHTML = `
+      <div class="testi-stars">${starsHTML(r.stars)}</div>
+      <p>"${r.text}"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">${r.name[0]}</div>
+        <div><strong>${r.name}</strong><span>${r.service}</span></div>
+      </div>`;
+    track.appendChild(card);
+  });
+
+  for (let i = 0; i < pages; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'testi-dot' + (i === 0 ? ' active' : '');
+    btn.addEventListener('click', () => goTo(i));
+    dots.appendChild(btn);
+  }
+
+  function cardWidth() {
+    const c = track.querySelector('.testi-card');
+    return c ? c.offsetWidth + 24 : 324;
+  }
+
+  function goTo(page) {
+    current = Math.max(0, Math.min(page, pages - 1));
+    track.style.transform = `translateX(-${current * PER_PAGE * cardWidth()}px)`;
+    dots.querySelectorAll('.testi-dot').forEach((d,i) => d.classList.toggle('active', i === current));
+    prev.disabled = current === 0;
+    next.disabled = current === pages - 1;
+  }
+
+  prev.addEventListener('click', () => goTo(current - 1));
+  next.addEventListener('click', () => goTo(current + 1));
+  goTo(0);
+
+  let startX = 0;
+  track.parentElement.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+  track.parentElement.addEventListener('touchend',   e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+  });
+}
+
+window.addEventListener('load', buildCarousel);
+
 /* ── Navbar scroll ── */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {

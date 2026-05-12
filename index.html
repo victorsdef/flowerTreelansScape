@@ -337,46 +337,27 @@
       <div class="section-header reveal">
         <span class="section-tag">Opiniones de Clientes</span>
         <h2>Lo que Nuestros Clientes Dicen</h2>
+        <div class="testi-rating-bar reveal">
+          <div class="testi-avg">4.7 <span>/ 5</span></div>
+          <div class="testi-stars-big">★★★★★</div>
+          <div class="testi-total" id="testiTotal">Basado en 0 reseñas</div>
+        </div>
       </div>
-      <div class="testi-grid">
 
-        <div class="testi-card reveal">
-          <div class="testi-stars">★★★★★</div>
-          <p>"FLOWER TREE LANDSCAPE completó la transformación de nuestro patio. Fue un desastre — ahora es el jardín más bonito de la cuadra. ¡Muy recomendado!"</p>
-          <div class="testi-author">
-            <div class="testi-avatar">M</div>
-            <div>
-              <strong>María G.</strong>
-              <span>Creación de Jardín</span>
-            </div>
-          </div>
+      <!-- Carrusel -->
+      <div class="testi-carousel reveal">
+        <button class="testi-arrow testi-prev" id="testiPrev" aria-label="Anterior">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <div class="testi-track-wrap">
+          <div class="testi-track" id="testiTrack"></div>
         </div>
-
-        <div class="testi-card reveal delay-1">
-          <div class="testi-stars">★★★★★</div>
-          <p>"Super profesionales, siempre a tiempo y el césped se ve increíble cada semana. La mejor inversión para nuestra casa."</p>
-          <div class="testi-author">
-            <div class="testi-avatar">C</div>
-            <div>
-              <strong>Carlos R.</strong>
-              <span>Corte de Césped</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="testi-card reveal delay-2">
-          <div class="testi-stars">★★★★★</div>
-          <p>"Hicieron una limpieza completa del patio antes del invierno y quedó impecable. Precio justo, excelente actitud y resultados increíbles."</p>
-          <div class="testi-author">
-            <div class="testi-avatar">A</div>
-            <div>
-              <strong>Ana L.</strong>
-              <span>Limpieza de Patio</span>
-            </div>
-          </div>
-        </div>
-
+        <button class="testi-arrow testi-next" id="testiNext" aria-label="Siguiente">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
       </div>
+
+      <div class="testi-dots" id="testiDots"></div>
     </div>
   </section>
 
