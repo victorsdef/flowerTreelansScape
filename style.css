@@ -774,6 +774,7 @@ h2 {
 .contact-icon.whatsapp  { color: #25d366; }
 .contact-icon.instagram { color: #e1306c; }
 .contact-icon.facebook  { color: #1877f2; }
+.contact-icon.zelle     { color: #6d1ed4; }
 .contact-card:hover .contact-icon { background: rgba(45,122,79,0.08); }
 .contact-info strong { display: block; font-size: 0.82rem; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
 .contact-info span   { font-size: 0.92rem; color: var(--text); font-weight: 500; word-break: break-all; }
