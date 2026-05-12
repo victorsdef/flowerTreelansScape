@@ -114,7 +114,8 @@ function updateCart() {
       li.innerHTML = `<i class="fa-solid fa-leaf"></i><span style="flex:1">${name}</span><button class="cart-remove" onclick="removeFromCart('${name.replace(/'/g,"\\'")}')"><i class="fa-solid fa-xmark"></i></button>`;
       cartList.appendChild(li);
     });
-    const msg = `Hola! Quisiera una cotización para los siguientes servicios:\n${[...cartItems].map(s => `• ${s}`).join('\n')}`;
+    const serviceList = [...cartItems].map(s => `  ✅ ${s}`).join('\n');
+    const msg = `🌿 *FLOWER TREE LANDSCAPE*\n\nHola! Me interesa una cotización para los siguientes servicios:\n\n${serviceList}\n\n📍 *Dirección:* \n📏 *Tamaño aproximado del área:* \n📅 *Fecha preferida:* \n📝 *Detalles adicionales:* \n\n¡Gracias!`;
     cartWA.href = `https://wa.me/16312047046?text=${encodeURIComponent(msg)}`;
   }
 }
@@ -167,7 +168,8 @@ const modalBackdrop = document.getElementById('modalBackdrop');
 function openModal(name, icon) {
   modalTitle.textContent = name;
   modalIcon.className = `fa-solid ${icon}`;
-  modalWA.href = `https://wa.me/0980381244?text=Hola!%20Me%20interesa%20el%20servicio%20de%20${encodeURIComponent(name)}.`;
+  const msgModal = `🌿 *FLOWER TREE LANDSCAPE*\n\nHola! Me interesa el servicio de *${name}*.\n\n📍 *Dirección:* \n📏 *Tamaño del área:* \n📅 *Fecha preferida:* \n📝 *Detalles:* \n\n¡Gracias!`;
+  modalWA.href = `https://wa.me/16312047046?text=${encodeURIComponent(msgModal)}`;
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
