@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ACTUALIZAR: titulo de la pestaña -->
+  <title>FLOWER TREE LANDSCAPE – Servicios de Jardinería y Paisajismo</title>
+  <meta name="description" content="Servicios profesionales de jardinería y paisajismo. Corte de césped, poda de plantas, diseño de jardines y más. ¡Contacta a FLOWER TREE LANDSCAPE hoy!" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       BOTON FLOTANTE WHATSAPP
+       ACTUALIZAR: numero en href (formato internacional, sin +)
+  ═══════════════════════════════════════ -->
+  <a href="https://wa.me/0980381244?text=Hola!%20Me%20interesa%20los%20servicios%20de%20FLOWER%20TREE%20LANDSCAPE."
+     class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Chat with me!</span>
+  </a>
+
+  <!-- ═══════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <!-- ACTUALIZAR: nombre en navbar -->
+    <div class="nav-logo">
+      <i class="fa-solid fa-leaf logo-leaf"></i> FLOWER TREE LANDSCAPE
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge reveal"><i class="fa-solid fa-star"></i> Trusted Gardening Professional</div>
+      <!-- ACTUALIZAR: titular principal del hero -->
+      <h1 class="reveal delay-1">
+        Transforma tu <br/>espacio en un <span class="hero-highlight">Paraíso Verde</span>
+      </h1>
+      <!-- ACTUALIZAR: subtitulo del hero -->
+      <p class="hero-sub reveal delay-2">
+        Servicios profesionales de jardinería y paisajismo.<br/>
+        Tu jardín de ensueño está a una llamada de distancia.
+      </p>
+      <div class="hero-actions reveal delay-3">
+        <!-- ACTUALIZAR: numero de whatsapp en el href -->
+        <a href="https://wa.me/0980381244?text=Hola!%20Me%20gustaría%20una%20cotización%20gratuita."
+           class="btn-primary" target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp"></i> Solicitar Cotización
+        </a>
+        <a href="#services" class="btn-outline">View Services</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       STATS
+       ACTUALIZAR: numeros y etiquetas segun experiencia real
+  ═══════════════════════════════════════ -->
+  <section class="stats-bar">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-number" data-target="10">0</span><span class="stat-suffix">+</span>
+        <p>Años de Experiencia</p>
+      </div>
+      <div class="stat-item reveal delay-1">
+        <span class="stat-number" data-target="500">0</span><span class="stat-suffix">+</span>
+        <p>Clientes Felices</p>
+      </div>
+      <div class="stat-item reveal delay-2">
+        <span class="stat-number" data-target="1000">0</span><span class="stat-suffix">+</span>
+        <p>Jardines Transformados</p>
+      </div>
+      <div class="stat-item reveal delay-3">
+        <span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span>
+        <p>Satisfacción Garantizada</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════ -->
+  <section class="about section" id="about">
+    <div class="container about-grid">
+
+      <!-- ACTUALIZAR: reemplaza about-photo con una foto real de Roberto -->
+      <div class="about-photo reveal">
+        <div class="photo-placeholder">
+          <i class="fa-solid fa-user-tie"></i>
+          <!-- Para agregar foto real: <img src="img/roberto.jpg" alt="Roberto" /> -->
+          <!-- y elimina el div photo-placeholder -->
+        </div>
+        <div class="photo-badge">
+          <i class="fa-solid fa-leaf"></i> Certified Professional
+        </div>
+      </div>
+
+      <div class="about-text reveal delay-1">
+        <span class="section-tag">Quiénes Somos</span>
+        <h2>Más que Jardineros —<br/>somos <span class="highlight">Artistas del Paisaje</span></h2>
+        <!-- ACTUALIZAR: historia personal de Roberto -->
+        <p>
+          Somos <strong>FLOWER TREE LANDSCAPE</strong> — profesionales apasionados con más de 10 años de experiencia
+          transformando patios ordinarios en espacios verdes espectaculares. Nos enorgullece traer dedicación,
+          creatividad y cuidado a cada proyecto que emprendemos.
+        </p>
+        <p>
+          Ya necesites un césped fresco, un jardín rediseñado, eliminación de árboles o simplemente mantenimiento confiable —
+          llegamos a tiempo, hacemos el trabajo bien y dejamos tu espacio mejor de lo que imaginabas.
+        </p>
+        <ul class="check-list">
+          <li><i class="fa-solid fa-circle-check"></i> Confiable y puntual</li>
+          <li><i class="fa-solid fa-circle-check"></i> Precios justos y transparentes</li>
+          <li><i class="fa-solid fa-circle-check"></i> Totalmente asegurado y profesional</li>
+          <li><i class="fa-solid fa-circle-check"></i> Atendemos clientes residenciales y comerciales</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Trabaja con Nosotros</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="services section" id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Lo que hacemos</span>
+        <h2>Servicios que Hacen Brillar tu Espacio</h2>
+        <p>Desde mantenimiento básico hasta transformaciones completas de jardines — lo hacemos todo.</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="card reveal">
+          <div class="card-icon"><i class="fa-solid fa-leaf"></i></div>
+          <h3>Corte de Césped y Maleza</h3>
+          <p>Corte preciso y regular para mantener tu césped saludable, parejo y impecable durante todo el año.</p>
+        </div>
+
+        <div class="card reveal delay-1">
+          <div class="card-icon"><i class="fa-solid fa-broom"></i></div>
+          <h3>Limpieza de Patios y Terrenos</h3>
+          <p>Limpieza completa de patios y terrenos para tener tu espacio siempre listo y en perfecto estado.</p>
+        </div>
+
+        <div class="card reveal delay-2">
+          <div class="card-icon"><i class="fa-solid fa-scissors"></i></div>
+          <h3>Poda de Plantas y Arbustos</h3>
+          <p>Poda experta y formación de plantas y arbustos para promover crecimiento saludable y belle estructura.</p>
+        </div>
+
+        <div class="card reveal delay-3">
+          <div class="card-icon"><i class="fa-solid fa-weeds"></i></div>
+          <h3>Eliminación de Maleza</h3>
+          <p>Eliminación efectiva de maleza para un jardín limpio y bien mantenido.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon"><i class="fa-solid fa-fan"></i></div>
+          <h3>Mantenimiento de Jardines</h3>
+          <p>Mantenimiento regular completo para que tu jardín luzca hermoso en todas las estaciones.</p>
+        </div>
+
+        <div class="card reveal delay-1">
+          <div class="card-icon"><i class="fa-solid fa-tree"></i></div>
+          <h3>Plantación de Árboles</h3>
+          <p>Plantación profesional de árboles para añadir verdor, sombra y valor a tu propiedad.</p>
+        </div>
+
+        <div class="card reveal delay-2">
+          <div class="card-icon"><i class="fa-solid fa-chainsaw"></i></div>
+          <h3>Eliminación de Árboles</h3>
+          <p>Remoción segura y profesional de árboles grandes o peligrosos con equipamiento especializado.</p>
+        </div>
+
+        <div class="card reveal delay-3">
+          <div class="card-icon"><i class="fa-solid fa-leaf"></i></div>
+          <h3>Creación de Jardines</h3>
+          <p>Diseño y creación de jardines personalizados que reflejan tu visión y estilo.</p>
+          <span class="card-tag">Premium</span>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon"><i class="fa-solid fa-droplet"></i></div>
+          <h3>Chequeo de Riego e Instalación</h3>
+          <p>Revisión e instalación de sistemas de riego para un mantenimiento óptimo de tu jardín.</p>
+        </div>
+
+        <div class="card reveal delay-1">
+          <div class="card-icon"><i class="fa-solid fa-square"></i></div>
+          <h3>Patios de Piedra</h3>
+          <p>Diseño e instalación de patios de piedra para crear espacios exteriores hermosos y funcionales.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       POR QUE ELEGIRME
+  ═══════════════════════════════════════ -->
+  <section class="why section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Por qué nosotros</span>
+        <h2>La Opción Correcta para tu Jardín</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fa-solid fa-star"></i></div>
+          <h3>Calidad Garantizada</h3>
+          <p>Cada trabajo se realiza con precisión y cuidado. No nos vamos hasta que tu jardín luzca perfecto.</p>
+        </div>
+        <div class="why-card reveal delay-1">
+          <div class="why-icon"><i class="fa-solid fa-clock"></i></div>
+          <h3>Siempre a Tiempo</h3>
+          <p>Tu tiempo importa. Llegamos cuando está programado y terminamos dentro del plazo acordado.</p>
+        </div>
+        <div class="why-card reveal delay-2">
+          <div class="why-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+          <h3>Precios Justos</h3>
+          <p>Cotizaciones honestas y directas. Sin costos ocultos. Sabes exactamente cuánto pagas antes de comenzar.</p>
+        </div>
+        <div class="why-card reveal delay-3">
+          <div class="why-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>Totalmente Asegurado</h3>
+          <p>Trabaja con tranquilidad. Tu propiedad está protegida y estás en manos profesionales.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       GALERIA
+       ACTUALIZAR: reemplazar los .gallery-img con <img src="img/foto.jpg" />
+       Agrega fotos reales de trabajos de Roberto en la carpeta img/
+  ═══════════════════════════════════════ -->
+  <section class="gallery section" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Nuestro Trabajo</span>
+        <h2>Ve la Transformación</h2>
+        <p>Jardines reales, resultados reales. Aqui está lo que hemos hecho para nuestros clientes.</p>
+      </div>
+      <div class="gallery-grid">
+        <!-- ACTUALIZAR: cada .gallery-item — reemplaza con <img src="img/foto1.jpg" alt="..." /> -->
+        <div class="gallery-item reveal g-large">
+          <div class="gallery-placeholder"><i class="fa-solid fa-image"></i><span>Add photo here</span></div>
+          <div class="gallery-overlay"><span>Lawn Mowing</span></div>
+        </div>
+        <div class="gallery-item reveal delay-1">
+          <div class="gallery-placeholder"><i class="fa-solid fa-image"></i><span>Add photo here</span></div>
+          <div class="gallery-overlay"><span>Garden Design</span></div>
+        </div>
+        <div class="gallery-item reveal delay-2">
+          <div class="gallery-placeholder"><i class="fa-solid fa-image"></i><span>Add photo here</span></div>
+          <div class="gallery-overlay"><span>Tree Trimming</span></div>
+        </div>
+        <div class="gallery-item reveal delay-1">
+          <div class="gallery-placeholder"><i class="fa-solid fa-image"></i><span>Add photo here</span></div>
+          <div class="gallery-overlay"><span>Yard Cleanup</span></div>
+        </div>
+        <div class="gallery-item reveal delay-2">
+          <div class="gallery-placeholder"><i class="fa-solid fa-image"></i><span>Add photo here</span></div>
+          <div class="gallery-overlay"><span>Landscaping</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       TESTIMONIOS
+       ACTUALIZAR: nombre, texto y servicio de cada testimonio
+  ═══════════════════════════════════════ -->
+  <section class="testimonials section" id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Opiniones de Clientes</span>
+        <h2>Lo que Nuestros Clientes Dicen</h2>
+      </div>
+      <div class="testi-grid">
+
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <p>"FLOWER TREE LANDSCAPE completó la transformación de nuestro patio. Fue un desastre — ahora es el jardín más bonito de la cuadra. ¡Muy recomendado!"</p>
+          <div class="testi-author">
+            <div class="testi-avatar">M</div>
+            <div>
+              <strong>María G.</strong>
+              <span>Creación de Jardín</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal delay-1">
+          <div class="testi-stars">★★★★★</div>
+          <p>"Super profesionales, siempre a tiempo y el césped se ve increíble cada semana. La mejor inversión para nuestra casa."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">C</div>
+            <div>
+              <strong>Carlos R.</strong>
+              <span>Corte de Césped</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal delay-2">
+          <div class="testi-stars">★★★★★</div>
+          <p>"Hicieron una limpieza completa del patio antes del invierno y quedó impecable. Precio justo, excelente actitud y resultados increíbles."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">A</div>
+            <div>
+              <strong>Ana L.</strong>
+              <span>Limpieza de Patio</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="container reveal">
+      <!-- ACTUALIZAR: texto del banner de llamada a la accion -->
+      <h2>¿Listo para un Jardín Hermoso?</h2>
+      <p>Solicita tu cotización gratuita hoy — sin compromiso, sin presión.</p>
+      <a href="https://wa.me/0980381244?text=Hola!%20Me%20gustaría%20una%20cotización%20gratuita%20de%20FLOWER%20TREE%20LANDSCAPE."
+         class="btn-primary btn-large" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i> Consúltanos Ahora
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CONTACT
+  ═══════════════════════════════════════ -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Contacto</span>
+        <h2>Hablemos sobre tu Jardín</h2>
+        <p class="contact-sub">Comunícate por cualquier canal — respondemos rápido.</p>
+      </div>
+      <div class="contact-grid">
+
+        <!-- ACTUALIZAR: correo electronico -->
+        <a href="mailto:23isa.vin@gmail.com" class="contact-card reveal">
+          <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="contact-info">
+            <strong>Email</strong>
+            <span>23isa.vin@gmail.com</span>
+          </div>
+        </a>
+
+        <!-- ACTUALIZAR: numero de whatsapp -->
+        <a href="https://wa.me/0980381244" class="contact-card reveal delay-1" target="_blank" rel="noopener">
+          <div class="contact-icon whatsapp"><i class="fa-brands fa-whatsapp"></i></div>
+          <div class="contact-info">
+            <strong>WhatsApp</strong>
+            <span>+0980381244</span>
+          </div>
+        </a>
+
+        <!-- ACTUALIZAR: usuario de facebook -->
+        <a href="https://facebook.com/kikimora230725" class="contact-card reveal delay-2" target="_blank" rel="noopener">
+          <div class="contact-icon facebook"><i class="fa-brands fa-facebook"></i></div>
+          <div class="contact-info">
+            <strong>Facebook</strong>
+            <span>FLOWER TREE LANDSCAPE</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo"><i class="fa-solid fa-leaf"></i> FLOWER TREE LANDSCAPE</div>
+      <p>Transformando jardines y espacios verdes en toda la región</p>
+      <div class="footer-socials">
+        <!-- ACTUALIZAR: links de redes sociales -->
+        <a href="https://facebook.com/kikimora230725" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://wa.me/0980381244" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+      <!-- ACTUALIZAR: año si es necesario -->
+      <p class="footer-copy">&copy; 2026 FLOWER TREE LANDSCAPE. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
