@@ -2,6 +2,61 @@
    script.js
 ════════════════════════════════════════ */
 
+/* ── Admin config override ── */
+function getConfig() {
+  try { return JSON.parse(localStorage.getItem('ftl_config') || '{}'); } catch { return {}; }
+}
+
+function getPhone() {
+  return getConfig().phone || '16312047046';
+}
+
+function applyConfig() {
+  const cfg = getConfig();
+  if (!Object.keys(cfg).length) return;
+
+  if (cfg.phone) {
+    document.querySelectorAll('a[href^="https://wa.me"]').forEach(a => {
+      a.href = a.href.replace(/wa\.me\/\d+/, `wa.me/${cfg.phone}`);
+    });
+    const waLink = document.getElementById('contactWALink');
+    if (waLink) waLink.href = `https://wa.me/${cfg.phone}`;
+  }
+  if (cfg.phoneDisplay) {
+    const waText = document.getElementById('contactWAText');
+    if (waText) waText.textContent = cfg.phoneDisplay;
+    const zelleContact = document.getElementById('zelleContactText');
+    if (zelleContact) zelleContact.textContent = cfg.phoneDisplay;
+    const zelleChip = document.getElementById('zelleChipText');
+    if (zelleChip) zelleChip.textContent = cfg.phoneDisplay;
+  }
+  if (cfg.email) {
+    const link = document.getElementById('contactEmailLink');
+    if (link) link.href = `mailto:${cfg.email}`;
+    const text = document.getElementById('contactEmailText');
+    if (text) text.textContent = cfg.email;
+  }
+  if (cfg.facebook) {
+    document.querySelectorAll('a[href*="facebook.com"]').forEach(a => { a.href = cfg.facebook; });
+  }
+  if (cfg.heroHighlight) {
+    const hl = document.querySelector('.hero-highlight');
+    if (hl) hl.textContent = cfg.heroHighlight;
+  }
+  if (cfg.heroSub) {
+    const sub = document.querySelector('.hero-sub');
+    if (sub) sub.textContent = cfg.heroSub;
+  }
+  const statMap = { statYears: cfg.statYears, statClients: cfg.statClients, statGardens: cfg.statGardens, statSatisfaction: cfg.statSatisfaction };
+  Object.entries(statMap).forEach(([id, val]) => {
+    if (val === undefined) return;
+    const el = document.getElementById(id);
+    if (el) { el.dataset.target = val; el.textContent = '0'; }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', applyConfig);
+
 /* ── Testimonials ── */
 const reviews = [
   { name:"Maria G.",      stars:5, service:"Garden Design & Creation",   text:"They completely transformed our backyard. It was a mess — now it is the most beautiful yard on the block. Highly recommended!" },
@@ -293,7 +348,7 @@ function updateCart() {
     });
     const list = [...cartItems].map(s => `  - ${s}`).join('\n');
     const msg  = `*FLOWER TREE LANDSCAPE*\n\nHello! I would like a quote for the following services:\n\n${list}\n\nThank you!`;
-    cartWA.href = `https://wa.me/16312047046?text=${encodeURIComponent(msg)}`;
+    cartWA.href = `https://wa.me/${getPhone()}?text=${encodeURIComponent(msg)}`;
   }
 }
 
@@ -372,7 +427,7 @@ function openModal(name, icon) {
   modalTitle.textContent = name;
   modalIcon.className = `fa-solid ${icon}`;
   const msgModal = `*FLOWER TREE LANDSCAPE*\n\nHello! I am interested in the *${name}* service.\n\nThank you!`;
-  modalWA.href = `https://wa.me/16312047046?text=${encodeURIComponent(msgModal)}`;
+  modalWA.href = `https://wa.me/${getPhone()}?text=${encodeURIComponent(msgModal)}`;
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }

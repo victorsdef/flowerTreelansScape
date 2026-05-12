@@ -64,19 +64,19 @@
   <section class="stats-bar">
     <div class="stats-grid">
       <div class="stat-item reveal">
-        <span class="stat-number" data-target="10">0</span><span class="stat-suffix">+</span>
+        <span class="stat-number" id="statYears" data-target="10">0</span><span class="stat-suffix">+</span>
         <p>Years of Experience</p>
       </div>
       <div class="stat-item reveal delay-1">
-        <span class="stat-number" data-target="500">0</span><span class="stat-suffix">+</span>
+        <span class="stat-number" id="statClients" data-target="500">0</span><span class="stat-suffix">+</span>
         <p>Happy Clients</p>
       </div>
       <div class="stat-item reveal delay-2">
-        <span class="stat-number" data-target="1000">0</span><span class="stat-suffix">+</span>
+        <span class="stat-number" id="statGardens" data-target="1000">0</span><span class="stat-suffix">+</span>
         <p>Gardens Transformed</p>
       </div>
       <div class="stat-item reveal delay-3">
-        <span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span>
+        <span class="stat-number" id="statSatisfaction" data-target="100">0</span><span class="stat-suffix">%</span>
         <p>Satisfaction Guaranteed</p>
       </div>
     </div>
@@ -345,19 +345,19 @@
       </div>
       <div class="contact-grid">
 
-        <a href="mailto:23isa.vin@gmail.com" class="contact-card reveal">
+        <a href="mailto:23isa.vin@gmail.com" id="contactEmailLink" class="contact-card reveal">
           <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
           <div class="contact-info">
             <strong>Email</strong>
-            <span>23isa.vin@gmail.com</span>
+            <span id="contactEmailText">23isa.vin@gmail.com</span>
           </div>
         </a>
 
-        <a href="https://wa.me/16312047046" class="contact-card reveal delay-1" target="_blank" rel="noopener">
+        <a href="https://wa.me/16312047046" id="contactWALink" class="contact-card reveal delay-1" target="_blank" rel="noopener">
           <div class="contact-icon whatsapp"><i class="fa-brands fa-whatsapp"></i></div>
           <div class="contact-info">
             <strong>WhatsApp</strong>
-            <span>+1 (631) 204-7046</span>
+            <span id="contactWAText">+1 (631) 204-7046</span>
           </div>
         </a>
 
@@ -365,11 +365,11 @@
           <div class="contact-icon zelle"><i class="fa-solid fa-mobile-screen-button"></i></div>
           <div class="contact-info">
             <strong>Zelle</strong>
-            <span>+1 (631) 204-7046</span>
+            <span id="zelleContactText">+1 (631) 204-7046</span>
           </div>
         </div>
 
-        <a href="https://facebook.com/kikimora230725" class="contact-card reveal delay-3" target="_blank" rel="noopener">
+        <a href="https://facebook.com/kikimora230725" id="contactFBLink" class="contact-card reveal delay-3" target="_blank" rel="noopener">
           <div class="contact-icon facebook"><i class="fa-brands fa-facebook"></i></div>
           <div class="contact-info">
             <strong>Facebook</strong>
@@ -434,7 +434,7 @@
         <div class="drawer-pay-label"><i class="fa-solid fa-shield-halved"></i> Accepted payment methods</div>
         <div class="drawer-pay-options">
           <div class="drawer-pay-chip"><i class="fa-solid fa-money-bill-wave"></i> Cash</div>
-          <div class="drawer-pay-chip zelle"><i class="fa-solid fa-mobile-screen-button"></i> Zelle · +1 (631) 204-7046</div>
+          <div class="drawer-pay-chip zelle" id="zelleChip"><i class="fa-solid fa-mobile-screen-button"></i> Zelle · <span id="zelleChipText">+1 (631) 204-7046</span></div>
         </div>
       </div>
 
