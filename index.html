@@ -151,65 +151,75 @@
       </div>
       <div class="services-grid">
 
-        <div class="card reveal">
+        <div class="card reveal" data-service="Corte de Césped y Maleza" data-icon="fa-leaf">
           <div class="card-icon"><i class="fa-solid fa-leaf"></i></div>
           <h3>Corte de Césped y Maleza</h3>
           <p>Corte preciso y regular para mantener tu césped saludable, parejo y impecable durante todo el año.</p>
+          <span class="card-see-more">Ver fotos y videos <i class="fa-solid fa-arrow-right"></i></span>
         </div>
 
-        <div class="card reveal delay-1">
+        <div class="card reveal delay-1" data-service="Limpieza de Patios y Terrenos" data-icon="fa-broom">
           <div class="card-icon"><i class="fa-solid fa-broom"></i></div>
           <h3>Limpieza de Patios y Terrenos</h3>
           <p>Limpieza completa de patios y terrenos para tener tu espacio siempre listo y en perfecto estado.</p>
+          <span class="card-see-more">Ver fotos y videos <i class="fa-solid fa-arrow-right"></i></span>
         </div>
 
-        <div class="card reveal delay-2">
+        <div class="card reveal delay-2" data-service="Poda de Plantas y Arbustos" data-icon="fa-scissors">
           <div class="card-icon"><i class="fa-solid fa-scissors"></i></div>
           <h3>Poda de Plantas y Arbustos</h3>
           <p>Poda experta y formación de plantas y arbustos para promover crecimiento saludable y belle estructura.</p>
+          <span class="card-see-more">Ver fotos y videos <i class="fa-solid fa-arrow-right"></i></span>
         </div>
 
-        <div class="card reveal delay-3">
+        <div class="card reveal delay-3" data-service="Eliminación de Maleza" data-icon="fa-weeds">
           <div class="card-icon"><i class="fa-solid fa-weeds"></i></div>
           <h3>Eliminación de Maleza</h3>
           <p>Eliminación efectiva de maleza para un jardín limpio y bien mantenido.</p>
+          <span class="card-see-more">Ver fotos y videos <i class="fa-solid fa-arrow-right"></i></span>
         </div>
 
-        <div class="card reveal">
+        <div class="card reveal" data-service="Mantenimiento de Jardines" data-icon="fa-fan">
           <div class="card-icon"><i class="fa-solid fa-fan"></i></div>
           <h3>Mantenimiento de Jardines</h3>
           <p>Mantenimiento regular completo para que tu jardín luzca hermoso en todas las estaciones.</p>
+          <span class="card-see-more">Ver fotos y videos <i class="fa-solid fa-arrow-right"></i></span>
         </div>
 
-        <div class="card reveal delay-1">
+        <div class="card reveal delay-1" data-service="Plantación de Árboles" data-icon="fa-tree">
           <div class="card-icon"><i class="fa-solid fa-tree"></i></div>
           <h3>Plantación de Árboles</h3>
           <p>Plantación profesional de árboles para añadir verdor, sombra y valor a tu propiedad.</p>
+          <span class="card-see-more">Ver fotos y videos <i class="fa-solid fa-arrow-right"></i></span>
         </div>
 
-        <div class="card reveal delay-2">
+        <div class="card reveal delay-2" data-service="Eliminación de Árboles" data-icon="fa-chainsaw">
           <div class="card-icon"><i class="fa-solid fa-chainsaw"></i></div>
           <h3>Eliminación de Árboles</h3>
           <p>Remoción segura y profesional de árboles grandes o peligrosos con equipamiento especializado.</p>
+          <span class="card-see-more">Ver fotos y videos <i class="fa-solid fa-arrow-right"></i></span>
         </div>
 
-        <div class="card reveal delay-3">
+        <div class="card reveal delay-3" data-service="Creación de Jardines" data-icon="fa-leaf">
           <div class="card-icon"><i class="fa-solid fa-leaf"></i></div>
           <h3>Creación de Jardines</h3>
           <p>Diseño y creación de jardines personalizados que reflejan tu visión y estilo.</p>
           <span class="card-tag">Premium</span>
+          <span class="card-see-more">Ver fotos y videos <i class="fa-solid fa-arrow-right"></i></span>
         </div>
 
-        <div class="card reveal">
+        <div class="card reveal" data-service="Chequeo de Riego e Instalación" data-icon="fa-droplet">
           <div class="card-icon"><i class="fa-solid fa-droplet"></i></div>
           <h3>Chequeo de Riego e Instalación</h3>
           <p>Revisión e instalación de sistemas de riego para un mantenimiento óptimo de tu jardín.</p>
+          <span class="card-see-more">Ver fotos y videos <i class="fa-solid fa-arrow-right"></i></span>
         </div>
 
-        <div class="card reveal delay-1">
+        <div class="card reveal delay-1" data-service="Patios de Piedra" data-icon="fa-square">
           <div class="card-icon"><i class="fa-solid fa-square"></i></div>
           <h3>Patios de Piedra</h3>
           <p>Diseño e instalación de patios de piedra para crear espacios exteriores hermosos y funcionales.</p>
+          <span class="card-see-more">Ver fotos y videos <i class="fa-solid fa-arrow-right"></i></span>
         </div>
 
       </div>
@@ -408,6 +418,40 @@
       <p class="footer-copy">&copy; 2026 FLOWER TREE LANDSCAPE. Todos los derechos reservados.</p>
     </div>
   </footer>
+
+  <!-- ═══════════════════════════════════════
+       MODAL DE SERVICIO
+  ═══════════════════════════════════════ -->
+  <div class="service-modal" id="serviceModal" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-header">
+        <div class="modal-icon"><i class="fa-solid fa-leaf" id="modalIcon"></i></div>
+        <h3 id="modalTitle">Nombre del Servicio</h3>
+      </div>
+
+      <div class="modal-section-label"><i class="fa-solid fa-images"></i> Fotos</div>
+      <div class="modal-photos" id="modalPhotos">
+        <!-- Las fotos se agregan aquí: <img src="img/servicio1.jpg" alt="..." /> -->
+        <div class="media-placeholder"><i class="fa-solid fa-image"></i><span>Agregar foto</span></div>
+        <div class="media-placeholder"><i class="fa-solid fa-image"></i><span>Agregar foto</span></div>
+        <div class="media-placeholder"><i class="fa-solid fa-image"></i><span>Agregar foto</span></div>
+      </div>
+
+      <div class="modal-section-label"><i class="fa-solid fa-film"></i> Videos</div>
+      <div class="modal-videos" id="modalVideos">
+        <!-- Los videos se agregan aquí: <video src="vid/servicio1.mp4" controls></video> -->
+        <!-- O un iframe de YouTube: <iframe src="https://www.youtube.com/embed/ID" allowfullscreen></iframe> -->
+        <div class="media-placeholder video-placeholder"><i class="fa-solid fa-circle-play"></i><span>Agregar video</span></div>
+      </div>
+
+      <a href="https://wa.me/0980381244?text=Hola!%20Me%20interesa%20el%20servicio%20de%20" id="modalWhatsapp"
+         class="btn-primary modal-wa" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i> Solicitar este servicio
+      </a>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

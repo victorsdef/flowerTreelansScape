@@ -88,3 +88,34 @@ window.addEventListener('load', () => {
     setTimeout(() => el.classList.add('visible'), 200 + i * 150);
   });
 });
+
+/* ── Modal de servicio ── */
+const modal       = document.getElementById('serviceModal');
+const modalTitle  = document.getElementById('modalTitle');
+const modalIcon   = document.getElementById('modalIcon');
+const modalWA     = document.getElementById('modalWhatsapp');
+const modalClose  = document.getElementById('modalClose');
+const modalBackdrop = document.getElementById('modalBackdrop');
+
+function openModal(name, icon) {
+  modalTitle.textContent = name;
+  modalIcon.className = `fa-solid ${icon}`;
+  modalWA.href = `https://wa.me/0980381244?text=Hola!%20Me%20interesa%20el%20servicio%20de%20${encodeURIComponent(name)}.`;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.card[data-service]').forEach(card => {
+  card.addEventListener('click', () => {
+    openModal(card.dataset.service, card.dataset.icon);
+  });
+});
+
+modalClose.addEventListener('click', closeModal);
+modalBackdrop.addEventListener('click', closeModal);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
