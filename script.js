@@ -46,69 +46,106 @@ const reviews = [
   { name:"Daniel M.",     stars:5, service:"Tree Planting",              text:"Planted three trees exactly where I wanted them and explained how to care for each one. Fantastic service!" }
 ];
 
+const avatarColors = [
+  '#2d7a4f','#3a9463','#1a5c38','#4aaa6e','#256b44',
+  '#1e7a5c','#2e6b8a','#7a4f2d','#6b2d7a','#7a2d4f'
+];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 function starsHTML(n) {
   return Array.from({length:5}, (_,i) =>
-    `<span style="color:${i < n ? '#fbbf24' : 'rgba(255,255,255,0.2)'}">★</span>`
+    `<span style="color:${i < n ? '#fbbf24' : 'rgba(255,255,255,0.18)'}">★</span>`
   ).join('');
 }
 
+function randomDate() {
+  const now  = new Date();
+  const days = Math.floor(Math.random() * 365);
+  const d    = new Date(now - days * 86400000);
+  return d.toLocaleDateString('es-US', { month:'short', year:'numeric' });
+}
+
 function buildCarousel() {
-  const track  = document.getElementById('testiTrack');
-  const dots   = document.getElementById('testiDots');
-  const total  = document.getElementById('testiTotal');
-  const prev   = document.getElementById('testiPrev');
-  const next   = document.getElementById('testiNext');
+  const track = document.getElementById('testiTrack');
+  const dots  = document.getElementById('testiDots');
+  const total = document.getElementById('testiTotal');
+  const prev  = document.getElementById('testiPrev');
+  const next  = document.getElementById('testiNext');
   if (!track) return;
 
-  total.textContent = `Basado en ${reviews.length} resenas`;
+  const shuffled = shuffle(reviews);
+  total.textContent = `Basado en ${shuffled.length} resenas`;
 
-  const PER_PAGE = window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 3;
-  const pages    = Math.ceil(reviews.length / PER_PAGE);
-  let   current  = 0;
-
-  reviews.forEach(r => {
-    const card = document.createElement('div');
+  shuffled.forEach((r, idx) => {
+    const color = avatarColors[idx % avatarColors.length];
+    const card  = document.createElement('div');
     card.className = 'testi-card';
     card.innerHTML = `
-      <div class="testi-stars">${starsHTML(r.stars)}</div>
+      <div class="testi-top">
+        <div class="testi-stars">${starsHTML(r.stars)}</div>
+        <span class="testi-date">${randomDate()}</span>
+      </div>
       <p>"${r.text}"</p>
       <div class="testi-author">
-        <div class="testi-avatar">${r.name[0]}</div>
+        <div class="testi-avatar" style="background:${color}">${r.name[0]}</div>
         <div><strong>${r.name}</strong><span>${r.service}</span></div>
       </div>`;
     track.appendChild(card);
   });
 
-  for (let i = 0; i < pages; i++) {
-    const btn = document.createElement('button');
-    btn.className = 'testi-dot' + (i === 0 ? ' active' : '');
-    btn.addEventListener('click', () => goTo(i));
-    dots.appendChild(btn);
+  let current = 0;
+
+  function perPage() {
+    return window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 3;
   }
 
-  function cardWidth() {
-    const c = track.querySelector('.testi-card');
-    return c ? c.offsetWidth + 24 : 324;
+  function pages() { return Math.ceil(shuffled.length / perPage()); }
+
+  function buildDots() {
+    dots.innerHTML = '';
+    for (let i = 0; i < pages(); i++) {
+      const b = document.createElement('button');
+      b.className = 'testi-dot' + (i === current ? ' active' : '');
+      b.addEventListener('click', () => goTo(i));
+      dots.appendChild(b);
+    }
   }
 
   function goTo(page) {
-    current = Math.max(0, Math.min(page, pages - 1));
-    track.style.transform = `translateX(-${current * PER_PAGE * cardWidth()}px)`;
+    current = Math.max(0, Math.min(page, pages() - 1));
+    const card   = track.querySelector('.testi-card');
+    const gap    = 20;
+    const cw     = card ? card.offsetWidth + gap : 0;
+    track.style.transform = `translateX(-${current * perPage() * cw}px)`;
     dots.querySelectorAll('.testi-dot').forEach((d,i) => d.classList.toggle('active', i === current));
     prev.disabled = current === 0;
-    next.disabled = current === pages - 1;
+    next.disabled = current >= pages() - 1;
   }
+
+  buildDots();
+  goTo(0);
 
   prev.addEventListener('click', () => goTo(current - 1));
   next.addEventListener('click', () => goTo(current + 1));
-  goTo(0);
 
-  let startX = 0;
-  track.parentElement.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
-  track.parentElement.addEventListener('touchend',   e => {
-    const diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+  window.addEventListener('resize', () => { buildDots(); goTo(Math.min(current, pages()-1)); });
+
+  let sx = 0;
+  track.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend',   e => {
+    const dx = sx - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 40) goTo(current + (dx > 0 ? 1 : -1));
   });
+
+  setInterval(() => goTo(current >= pages()-1 ? 0 : current+1), 6000);
 }
 
 window.addEventListener('load', buildCarousel);
