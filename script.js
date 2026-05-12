@@ -53,6 +53,26 @@ function applyConfig() {
     const el = document.getElementById(id);
     if (el) { el.dataset.target = val; el.textContent = '0'; }
   });
+
+  if (Array.isArray(cfg.gallery)) {
+    cfg.gallery.forEach((item, i) => {
+      const wrapper = document.getElementById(`galleryItem${i}`);
+      const labelEl = document.getElementById(`galleryLabel${i}`);
+      if (item.label && labelEl) labelEl.textContent = item.label;
+      if (item.src && wrapper) {
+        const ph = wrapper.querySelector('.gallery-placeholder');
+        if (ph) {
+          ph.innerHTML = '';
+          ph.style.padding = '0';
+          const img = document.createElement('img');
+          img.src = item.src;
+          img.alt = item.label || '';
+          img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+          ph.appendChild(img);
+        }
+      }
+    });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', applyConfig);
