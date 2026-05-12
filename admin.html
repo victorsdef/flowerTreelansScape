@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --green-dark:  #1a4a2e;
       --green-main:  #2d7a4f;
@@ -24,1046 +23,797 @@
       --radius:      12px;
       --shadow:      0 4px 24px rgba(0,0,0,.08);
     }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    /* ══════════════════════════════════
-       AUTH SCREENS
-    ══════════════════════════════════ */
+    /* ── Auth ── */
     .auth-wrap {
       min-height: 100vh;
       background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-main) 60%, var(--green-mid) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
+      display: flex; align-items: center; justify-content: center; padding: 1.5rem;
     }
     .auth-box {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 2.5rem 2rem;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.25);
-      text-align: center;
+      background: var(--white); border-radius: 20px; padding: 2.5rem 2rem;
+      width: 100%; max-width: 420px; box-shadow: 0 20px 60px rgba(0,0,0,.25); text-align: center;
     }
     .auth-logo {
       width: 64px; height: 64px;
       background: linear-gradient(135deg, var(--green-main), var(--green-mid));
-      border-radius: 16px;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.25rem;
-      font-size: 1.75rem; color: #fff;
+      border-radius: 16px; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem; font-size: 1.75rem; color: #fff;
     }
-    .auth-box h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      color: var(--green-dark);
-      margin-bottom: .35rem;
-    }
+    .auth-box h1 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--green-dark); margin-bottom: .35rem; }
     .auth-box > p { color: var(--muted); font-size: .9rem; margin-bottom: 1.75rem; }
-
-    .auth-box label {
-      display: block; text-align: left;
-      font-size: .8rem; font-weight: 600;
-      color: var(--muted); margin-bottom: .35rem;
-      text-transform: uppercase; letter-spacing: .04em;
-    }
-    .auth-box input {
-      width: 100%; padding: .8rem 1rem;
-      border: 2px solid var(--border);
-      border-radius: 10px;
-      font-size: .95rem; font-family: 'Inter', sans-serif;
-      color: var(--text); background: #fff;
-      margin-bottom: 1rem; outline: none;
-      transition: border-color .2s;
-    }
+    .auth-box label { display: block; text-align: left; font-size: .8rem; font-weight: 600; color: var(--muted); margin-bottom: .35rem; text-transform: uppercase; letter-spacing: .04em; }
+    .auth-box input { width: 100%; padding: .8rem 1rem; border: 2px solid var(--border); border-radius: 10px; font-size: .95rem; font-family: 'Inter', sans-serif; color: var(--text); background: #fff; margin-bottom: 1rem; outline: none; transition: border-color .2s; }
     .auth-box input:focus { border-color: var(--green-main); }
+    .auth-error { background: #fde8e8; border: 1px solid #e57373; color: var(--danger); border-radius: 8px; padding: .65rem 1rem; font-size: .85rem; margin-bottom: 1rem; display: none; text-align: left; }
 
-    .auth-error {
-      background: #fde8e8; border: 1px solid #e57373;
-      color: var(--danger); border-radius: 8px;
-      padding: .65rem 1rem; font-size: .85rem;
-      margin-bottom: 1rem; display: none; text-align: left;
-    }
-
-    /* ══════════════════════════════════
-       SHARED BUTTONS
-    ══════════════════════════════════ */
-    .btn {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .8rem 1.6rem; border-radius: 10px;
-      font-size: .95rem; font-weight: 600;
-      cursor: pointer; border: none;
-      transition: transform .1s, opacity .15s, background .2s;
-      text-decoration: none; font-family: 'Inter', sans-serif;
-    }
+    /* ── Buttons ── */
+    .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .8rem 1.6rem; border-radius: 10px; font-size: .95rem; font-weight: 600; cursor: pointer; border: none; transition: transform .1s, opacity .15s, background .2s; text-decoration: none; font-family: 'Inter', sans-serif; }
     .btn:active { transform: scale(.97); }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--green-main), var(--green-mid));
-      color: #fff; width: 100%; justify-content: center;
-    }
+    .btn-primary { background: linear-gradient(135deg, var(--green-main), var(--green-mid)); color: #fff; width: 100%; justify-content: center; }
     .btn-primary:hover { opacity: .9; }
-    .btn-outline {
-      background: transparent; color: var(--green-main);
-      border: 2px solid var(--green-main);
-    }
+    .btn-outline { background: transparent; color: var(--green-main); border: 2px solid var(--green-main); }
     .btn-outline:hover { background: var(--green-main); color: #fff; }
-    .btn-danger {
-      background: #fde8e8; color: var(--danger);
-      border: 1px solid #e57373;
-    }
+    .btn-danger { background: #fde8e8; color: var(--danger); border: 1px solid #e57373; }
     .btn-danger:hover { background: #fbd0d0; }
     .btn-sm { padding: .5rem 1rem; font-size: .85rem; border-radius: 8px; }
-    .btn-icon {
-      background: rgba(255,255,255,.15); color: #fff;
-      border: 1px solid rgba(255,255,255,.3); width: auto;
-    }
+    .btn-icon { background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.3); width: auto; }
     .btn-icon:hover { background: rgba(255,255,255,.25); }
 
-    /* ══════════════════════════════════
-       ADMIN PANEL WRAPPER
-    ══════════════════════════════════ */
+    /* ── Admin layout ── */
     #adminPanel { display: none; }
-
-    /* ── Navbar (same as main site) ── */
-    .navbar {
-      position: sticky; top: 0; z-index: 200;
-      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-main) 100%);
-      padding: 1rem 1.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-      box-shadow: 0 2px 20px rgba(0,0,0,.2);
-    }
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem; color: #fff; font-weight: 700;
-      display: flex; align-items: center; gap: .5rem;
-    }
+    .navbar { position: sticky; top: 0; z-index: 200; background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-main) 100%); padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 20px rgba(0,0,0,.2); gap: 1rem; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: #fff; font-weight: 700; display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
     .nav-logo i { color: #a8e6bf; }
-    .admin-badge {
-      background: rgba(255,255,255,.15);
-      color: rgba(255,255,255,.9);
-      font-size: .7rem; font-weight: 600;
-      padding: .2rem .6rem; border-radius: 20px;
-      text-transform: uppercase; letter-spacing: .06em;
-      border: 1px solid rgba(255,255,255,.25);
-    }
-    .nav-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .admin-badge { background: rgba(255,255,255,.15); color: rgba(255,255,255,.9); font-size: .7rem; font-weight: 600; padding: .2rem .6rem; border-radius: 20px; text-transform: uppercase; letter-spacing: .06em; border: 1px solid rgba(255,255,255,.25); }
+    .nav-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
 
-    /* ── Admin hero bar ── */
-    .admin-hero {
-      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-main) 100%);
-      padding: 2.5rem 1.5rem 3rem;
-      text-align: center; color: #fff;
-    }
-    .admin-hero .section-tag {
-      display: inline-block;
-      background: rgba(255,255,255,.15);
-      color: rgba(255,255,255,.9);
-      font-size: .75rem; font-weight: 600;
-      padding: .3rem .9rem; border-radius: 20px;
-      text-transform: uppercase; letter-spacing: .08em;
-      margin-bottom: .75rem;
-    }
-    .admin-hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      margin-bottom: .5rem;
-    }
-    .admin-hero p { color: rgba(255,255,255,.75); font-size: .95rem; }
+    .admin-hero { background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-main) 100%); padding: 2.5rem 1.5rem 3rem; text-align: center; color: #fff; }
+    .admin-hero .section-tag { display: inline-block; background: rgba(255,255,255,.15); color: rgba(255,255,255,.9); font-size: .75rem; font-weight: 600; padding: .3rem .9rem; border-radius: 20px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .75rem; }
+    .admin-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: .5rem; }
+    .admin-hero p { color: rgba(255,255,255,.75); font-size: .9rem; }
 
-    /* ── Main body ── */
-    .admin-body {
-      max-width: 900px;
-      margin: -1.5rem auto 0;
-      padding: 0 1.25rem 4rem;
-    }
+    .admin-body { max-width: 900px; margin: -1.5rem auto 0; padding: 0 1.25rem 4rem; }
 
-    /* ── Save bar (floats above content) ── */
-    .save-bar {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 1rem 1.25rem;
-      display: flex; align-items: center;
-      justify-content: space-between; gap: 1rem;
-      box-shadow: var(--shadow);
-      margin-bottom: 1.75rem;
-      flex-wrap: wrap;
-    }
-    .save-status {
-      display: flex; align-items: center; gap: .5rem;
-      font-size: .9rem; color: var(--muted);
-    }
+    .save-bar { background: var(--white); border-radius: var(--radius); padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; box-shadow: var(--shadow); margin-bottom: 1.75rem; flex-wrap: wrap; }
+    .save-status { display: flex; align-items: center; gap: .5rem; font-size: .88rem; color: var(--muted); }
     .save-status.saved { color: var(--green-main); font-weight: 600; }
     .save-bar-actions { display: flex; gap: .75rem; }
 
-    /* ── Note box ── */
-    .note-box {
-      background: #e8f5ee;
-      border: 1px solid #b2d8c0;
-      border-radius: var(--radius);
-      padding: .9rem 1.25rem;
-      display: flex; gap: .75rem; align-items: flex-start;
-      font-size: .85rem; color: #2d6a45; line-height: 1.5;
-      margin-bottom: 1.75rem;
-    }
+    .note-box { background: #e8f5ee; border: 1px solid #b2d8c0; border-radius: var(--radius); padding: .9rem 1.25rem; display: flex; gap: .75rem; align-items: flex-start; font-size: .85rem; color: #2d6a45; line-height: 1.5; margin-bottom: 1.75rem; }
     .note-box i { color: var(--green-main); margin-top: .15rem; flex-shrink: 0; }
 
-    /* ══════════════════════════════════
-       CONFIG SECTIONS (same look as site)
-    ══════════════════════════════════ */
-    .config-section {
-      background: var(--white);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      margin-bottom: 1.75rem;
-    }
-    .config-section-header {
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: .75rem;
-    }
-    .section-icon {
-      width: 40px; height: 40px;
-      background: linear-gradient(135deg, var(--green-main), var(--green-mid));
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      color: #fff; font-size: .95rem; flex-shrink: 0;
-    }
-    .config-section-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem; color: var(--green-dark);
-    }
+    /* ── Config sections ── */
+    .config-section { background: var(--white); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; margin-bottom: 1.75rem; }
+    .config-section-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: .75rem; }
+    .section-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--green-main), var(--green-mid)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: .95rem; flex-shrink: 0; }
+    .config-section-header h2 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--green-dark); flex: 1; }
     .config-section-header p { font-size: .82rem; color: var(--muted); }
     .config-section-body { padding: 1.5rem; }
 
-    /* ── Fields ── */
     .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
     @media (max-width: 600px) { .field-grid { grid-template-columns: 1fr; } }
-
     .field { display: flex; flex-direction: column; gap: .4rem; }
-    .field label {
-      font-size: .8rem; font-weight: 600; color: var(--muted);
-      text-transform: uppercase; letter-spacing: .04em;
-    }
-    .field input {
-      padding: .75rem 1rem;
-      border: 2px solid var(--border);
-      border-radius: 10px;
-      font-size: .95rem; font-family: 'Inter', sans-serif;
-      color: var(--text); background: #fff;
-      outline: none; transition: border-color .2s;
-    }
-    .field input:focus { border-color: var(--green-main); }
+    .field label { font-size: .8rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+    .field input, .field select { padding: .75rem 1rem; border: 2px solid var(--border); border-radius: 10px; font-size: .95rem; font-family: 'Inter', sans-serif; color: var(--text); background: #fff; outline: none; transition: border-color .2s; }
+    .field input:focus, .field select:focus { border-color: var(--green-main); }
     .field-hint { font-size: .75rem; color: #aaa; }
 
-    /* ══════════════════════════════════
-       GALLERY SECTION
-    ══════════════════════════════════ */
-    .gallery-admin-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.1rem;
-    }
+    /* ── Gallery ── */
+    .gallery-admin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
     @media (max-width: 700px) { .gallery-admin-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 440px) { .gallery-admin-grid { grid-template-columns: 1fr; } }
-
-    .gallery-slot {
-      border: 2px dashed var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      background: #f9fbf9;
-      transition: border-color .2s;
-      position: relative;
-    }
+    .gallery-slot { border: 2px dashed var(--border); border-radius: 12px; overflow: hidden; background: #f9fbf9; transition: border-color .2s; position: relative; }
     .gallery-slot.has-image { border-style: solid; border-color: var(--green-light); }
-
-    .gallery-slot-preview {
-      width: 100%; aspect-ratio: 4/3;
-      background: #eef4ee;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: .5rem; color: #aac8b0;
-      font-size: .85rem; position: relative;
-      overflow: hidden;
-    }
+    .gallery-slot-preview { width: 100%; aspect-ratio: 4/3; background: #eef4ee; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; color: #aac8b0; font-size: .85rem; position: relative; overflow: hidden; }
     .gallery-slot-preview i { font-size: 2rem; }
-    .gallery-slot-preview img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover;
-    }
-    .gallery-slot-preview .slot-overlay {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,.45);
-      display: flex; align-items: center; justify-content: center;
-      gap: .5rem; opacity: 0;
-      transition: opacity .2s;
-    }
+    .gallery-slot-preview img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .gallery-slot-preview .slot-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.45); display: flex; align-items: center; justify-content: center; gap: .5rem; opacity: 0; transition: opacity .2s; }
     .gallery-slot:hover .slot-overlay { opacity: 1; }
-
     .gallery-slot-body { padding: .75rem; display: flex; flex-direction: column; gap: .5rem; }
-    .gallery-slot-body input {
-      width: 100%; padding: .55rem .75rem;
-      border: 1.5px solid var(--border); border-radius: 8px;
-      font-size: .85rem; font-family: 'Inter', sans-serif;
-      color: var(--text); outline: none; transition: border-color .2s;
-    }
+    .gallery-slot-body input { width: 100%; padding: .55rem .75rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: .85rem; font-family: 'Inter', sans-serif; color: var(--text); outline: none; transition: border-color .2s; }
     .gallery-slot-body input:focus { border-color: var(--green-main); }
     .gallery-slot-actions { display: flex; gap: .5rem; }
     .gallery-slot-actions .btn { font-size: .8rem; padding: .45rem .75rem; flex: 1; justify-content: center; }
-
     input[type="file"] { display: none; }
 
-    /* ══════════════════════════════════
-       DANGER ZONE
-    ══════════════════════════════════ */
-    .danger-zone {
-      background: #fff8f8;
-      border: 1px solid #e57373;
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      display: flex; align-items: center;
-      justify-content: space-between; gap: 1rem; flex-wrap: wrap;
-      margin-bottom: 1.75rem;
-    }
-    .danger-zone h3 { font-size: .95rem; color: var(--danger); margin-bottom: .2rem; }
-    .danger-zone p  { font-size: .82rem; color: var(--muted); }
-
-    /* ══════════════════════════════════
-       CHANGE PASSWORD MODAL
-    ══════════════════════════════════ */
-    .modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,.5);
-      display: none; align-items: center; justify-content: center;
-      z-index: 300; padding: 1.5rem;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal-box {
-      background: var(--white); border-radius: 16px;
-      padding: 2rem; width: 100%; max-width: 380px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.2);
-    }
-    .modal-box h2 {
-      font-family: 'Playfair Display', serif;
-      color: var(--green-dark); font-size: 1.2rem; margin-bottom: 1.25rem;
-    }
-    .modal-box label {
-      display: block; font-size: .8rem; font-weight: 600;
-      color: var(--muted); text-transform: uppercase;
-      letter-spacing: .04em; margin-bottom: .35rem;
-    }
-    .modal-box input {
-      width: 100%; padding: .75rem 1rem;
-      border: 2px solid var(--border); border-radius: 10px;
-      font-size: .95rem; font-family: 'Inter', sans-serif;
-      color: var(--text); outline: none; margin-bottom: .9rem;
+    /* ── Services CRUD ── */
+    .service-list { display: flex; flex-direction: column; gap: .6rem; }
+    .service-row {
+      display: flex; align-items: center; gap: .85rem;
+      padding: .85rem 1rem;
+      border: 1.5px solid var(--border); border-radius: 10px;
+      background: #fff;
       transition: border-color .2s;
     }
+    .service-row:hover { border-color: var(--green-light); }
+    .svc-icon-badge {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--green-main), var(--green-mid));
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: .85rem;
+    }
+    .svc-info { flex: 1; min-width: 0; }
+    .svc-info strong { display: block; font-size: .92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .svc-info small { font-size: .78rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+    .svc-premium { font-size: .7rem; background: #fff3cd; color: #856404; border: 1px solid #ffc107; padding: .1rem .45rem; border-radius: 20px; font-weight: 600; flex-shrink: 0; }
+    .svc-delete { width: 32px; height: 32px; flex-shrink: 0; border: none; background: #fde8e8; color: var(--danger); border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: .85rem; transition: background .15s; }
+    .svc-delete:hover { background: #fbd0d0; }
+
+    .add-service-btn {
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      padding: .85rem; border: 2px dashed var(--green-light);
+      border-radius: 10px; cursor: pointer; color: var(--green-main);
+      font-weight: 600; font-size: .9rem; background: #f0faf4;
+      transition: background .2s, border-color .2s; margin-top: .25rem;
+    }
+    .add-service-btn:hover { background: #dff2e8; border-color: var(--green-main); }
+
+    .add-service-form {
+      border: 2px solid var(--green-light); border-radius: 12px;
+      padding: 1.25rem; background: #f0faf4; margin-top: .25rem;
+      display: none; flex-direction: column; gap: .9rem;
+    }
+    .add-service-form.open { display: flex; }
+    .add-service-form h3 { font-size: .95rem; color: var(--green-dark); margin-bottom: -.2rem; }
+    .add-service-form .field input,
+    .add-service-form .field select { background: #fff; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+    @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+    .icon-preview { display: flex; align-items: center; gap: .6rem; margin-top: .2rem; }
+    .icon-preview-badge { width: 32px; height: 32px; background: linear-gradient(135deg, var(--green-main), var(--green-mid)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: .9rem; }
+    .form-actions { display: flex; gap: .75rem; }
+    .form-actions .btn { flex: 1; justify-content: center; }
+
+    .svc-restore-btn { margin-top: .5rem; display: flex; align-items: center; justify-content: center; gap: .5rem; font-size: .82rem; color: var(--muted); background: none; border: none; cursor: pointer; padding: .4rem; text-decoration: underline; }
+    .svc-restore-btn:hover { color: var(--green-main); }
+
+    /* ── Danger zone ── */
+    .danger-zone { background: #fff8f8; border: 1px solid #e57373; border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+    .danger-zone h3 { font-size: .95rem; color: var(--danger); margin-bottom: .2rem; }
+    .danger-zone p { font-size: .82rem; color: var(--muted); }
+
+    /* ── Password modal ── */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none; align-items: center; justify-content: center; z-index: 300; padding: 1.5rem; }
+    .modal-overlay.open { display: flex; }
+    .modal-box { background: var(--white); border-radius: 16px; padding: 2rem; width: 100%; max-width: 380px; box-shadow: 0 20px 60px rgba(0,0,0,.2); }
+    .modal-box h2 { font-family: 'Playfair Display', serif; color: var(--green-dark); font-size: 1.2rem; margin-bottom: 1.25rem; }
+    .modal-box label { display: block; font-size: .8rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: .35rem; }
+    .modal-box input { width: 100%; padding: .75rem 1rem; border: 2px solid var(--border); border-radius: 10px; font-size: .95rem; font-family: 'Inter', sans-serif; color: var(--text); outline: none; margin-bottom: .9rem; transition: border-color .2s; }
     .modal-box input:focus { border-color: var(--green-main); }
     .modal-actions { display: flex; gap: .75rem; margin-top: .5rem; }
     .modal-actions .btn { flex: 1; justify-content: center; width: auto; }
-    .modal-error {
-      background: #fde8e8; border: 1px solid #e57373;
-      color: var(--danger); border-radius: 8px;
-      padding: .55rem .9rem; font-size: .82rem;
-      margin-bottom: .75rem; display: none;
-    }
+    .modal-error { background: #fde8e8; border: 1px solid #e57373; color: var(--danger); border-radius: 8px; padding: .55rem .9rem; font-size: .82rem; margin-bottom: .75rem; display: none; }
 
-    /* ── Service toggle rows ── */
-    .service-toggle-list { display: flex; flex-direction: column; gap: .6rem; }
-    .service-toggle-row {
-      display: flex; align-items: center;
-      padding: .8rem 1rem;
-      border: 1.5px solid var(--border);
-      border-radius: 10px; gap: .85rem;
-      transition: border-color .2s, background .2s;
-      cursor: pointer;
-    }
-    .service-toggle-row.hidden-service {
-      background: #fafafa; border-color: #ddd; opacity: .55;
-    }
-    .service-toggle-row .svc-icon {
-      width: 36px; height: 36px;
-      background: linear-gradient(135deg, var(--green-main), var(--green-mid));
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      color: #fff; font-size: .85rem; flex-shrink: 0;
-    }
-    .service-toggle-row.hidden-service .svc-icon {
-      background: #ccc;
-    }
-    .service-toggle-row .svc-name {
-      flex: 1; font-size: .92rem; font-weight: 500;
-    }
-
-    /* iOS-style toggle */
-    .toggle {
-      position: relative; width: 44px; height: 24px; flex-shrink: 0;
-    }
-    .toggle input { opacity: 0; width: 0; height: 0; }
-    .toggle-slider {
-      position: absolute; inset: 0;
-      background: #ccc; border-radius: 24px;
-      cursor: pointer; transition: background .2s;
-    }
-    .toggle-slider::before {
-      content: ''; position: absolute;
-      width: 18px; height: 18px;
-      left: 3px; top: 3px;
-      background: #fff; border-radius: 50%;
-      transition: transform .2s;
-      box-shadow: 0 1px 4px rgba(0,0,0,.2);
-    }
-    .toggle input:checked + .toggle-slider { background: var(--green-main); }
-    .toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
-
-    /* ── Toast notification ── */
-    .toast {
-      position: fixed; bottom: 2rem; right: 2rem;
-      background: var(--green-dark); color: #fff;
-      padding: .8rem 1.5rem; border-radius: 10px;
-      font-size: .9rem; font-weight: 600;
-      box-shadow: 0 8px 30px rgba(0,0,0,.2);
-      display: flex; align-items: center; gap: .5rem;
-      transform: translateY(4rem); opacity: 0;
-      transition: transform .3s, opacity .3s;
-      z-index: 400;
-    }
+    /* ── Toast ── */
+    .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--green-dark); color: #fff; padding: .8rem 1.5rem; border-radius: 10px; font-size: .9rem; font-weight: 600; box-shadow: 0 8px 30px rgba(0,0,0,.2); display: flex; align-items: center; gap: .5rem; transform: translateY(4rem); opacity: 0; transition: transform .3s, opacity .3s; z-index: 400; }
     .toast.show { transform: translateY(0); opacity: 1; }
   </style>
 </head>
 <body>
 
-  <!-- ══════════════════════════════════
-       LOGIN SCREEN
-  ══════════════════════════════════ -->
-  <div class="auth-wrap" id="loginScreen">
-    <div class="auth-box">
-      <div class="auth-logo"><i class="fa-solid fa-leaf"></i></div>
-      <h1>Admin Panel</h1>
-      <p>FLOWER TREE LANDSCAPE</p>
-      <div class="auth-error" id="loginError">Incorrect password. Try again.</div>
-      <label for="loginPass">Password</label>
-      <input type="password" id="loginPass" placeholder="Enter your password" autocomplete="current-password" />
-      <button class="btn btn-primary" onclick="handleLogin()">
-        <i class="fa-solid fa-lock-open"></i> Log In
-      </button>
+<!-- ── Login ── -->
+<div class="auth-wrap" id="loginScreen">
+  <div class="auth-box">
+    <div class="auth-logo"><i class="fa-solid fa-leaf"></i></div>
+    <h1>Admin Panel</h1>
+    <p>FLOWER TREE LANDSCAPE</p>
+    <div class="auth-error" id="loginError">Incorrect password. Try again.</div>
+    <label for="loginPass">Password</label>
+    <input type="password" id="loginPass" placeholder="Enter your password" autocomplete="current-password" />
+    <button class="btn btn-primary" onclick="handleLogin()"><i class="fa-solid fa-lock-open"></i> Log In</button>
+  </div>
+</div>
+
+<!-- ── Create password ── -->
+<div class="auth-wrap" id="createScreen" style="display:none">
+  <div class="auth-box">
+    <div class="auth-logo"><i class="fa-solid fa-shield-halved"></i></div>
+    <h1>Create Your Password</h1>
+    <p>First time setup — choose a password to protect this panel.</p>
+    <div class="auth-error" id="createError"></div>
+    <label>New Password</label>
+    <input type="password" id="createPass1" placeholder="Choose a password (min. 6 characters)" autocomplete="new-password" />
+    <label>Confirm Password</label>
+    <input type="password" id="createPass2" placeholder="Repeat the password" autocomplete="new-password" />
+    <button class="btn btn-primary" onclick="handleCreate()"><i class="fa-solid fa-shield-halved"></i> Create Password &amp; Enter</button>
+  </div>
+</div>
+
+<!-- ── Admin panel ── -->
+<div id="adminPanel">
+
+  <nav class="navbar">
+    <div class="nav-logo">
+      <i class="fa-solid fa-leaf"></i> FLOWER TREE LANDSCAPE
+      <span class="admin-badge">Admin</span>
     </div>
+    <div class="nav-actions">
+      <a href="index.html" class="btn btn-icon btn-sm" target="_blank"><i class="fa-solid fa-eye"></i> Preview</a>
+      <button class="btn btn-icon btn-sm" onclick="openChangePwd()"><i class="fa-solid fa-key"></i> Password</button>
+      <button class="btn btn-sm" onclick="handleLogout()" style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3)"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+    </div>
+  </nav>
+
+  <div class="admin-hero">
+    <span class="section-tag">Configuration</span>
+    <h1>Site Administration</h1>
+    <p>Edit your services, gallery photos, and business information.</p>
   </div>
 
-  <!-- ══════════════════════════════════
-       CREATE PASSWORD SCREEN
-  ══════════════════════════════════ -->
-  <div class="auth-wrap" id="createScreen" style="display:none">
-    <div class="auth-box">
-      <div class="auth-logo"><i class="fa-solid fa-shield-halved"></i></div>
-      <h1>Create Your Password</h1>
-      <p>First time setup — choose a password to protect this panel.</p>
-      <div class="auth-error" id="createError"></div>
-      <label>New Password</label>
-      <input type="password" id="createPass1" placeholder="Choose a password (min. 6 characters)" autocomplete="new-password" />
-      <label>Confirm Password</label>
-      <input type="password" id="createPass2" placeholder="Repeat the password" autocomplete="new-password" />
-      <button class="btn btn-primary" onclick="handleCreate()">
-        <i class="fa-solid fa-shield-halved"></i> Create Password &amp; Enter
-      </button>
-    </div>
-  </div>
+  <div class="admin-body">
 
-  <!-- ══════════════════════════════════
-       ADMIN PANEL
-  ══════════════════════════════════ -->
-  <div id="adminPanel">
-
-    <!-- Navbar -->
-    <nav class="navbar">
-      <div class="nav-logo">
-        <i class="fa-solid fa-leaf"></i>
-        FLOWER TREE LANDSCAPE
-        <span class="admin-badge">Admin</span>
+    <!-- Save bar -->
+    <div class="save-bar">
+      <div class="save-status" id="saveStatus">
+        <i class="fa-solid fa-circle-dot"></i> Changes save automatically
       </div>
-      <div class="nav-actions">
-        <a href="index.html" class="btn btn-icon btn-sm" target="_blank">
-          <i class="fa-solid fa-eye"></i> Preview Site
-        </a>
-        <button class="btn btn-icon btn-sm" onclick="openChangePwd()">
-          <i class="fa-solid fa-key"></i> Password
-        </button>
-        <button class="btn btn-danger btn-sm" onclick="handleLogout()" style="background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.3)">
-          <i class="fa-solid fa-right-from-bracket"></i> Logout
+      <div class="save-bar-actions">
+        <button class="btn btn-primary btn-sm" onclick="saveAll()" style="width:auto">
+          <i class="fa-solid fa-floppy-disk"></i> Save All
         </button>
       </div>
-    </nav>
-
-    <!-- Hero bar -->
-    <div class="admin-hero">
-      <span class="section-tag">Configuration</span>
-      <h1>Site Administration</h1>
-      <p>Edit your business information, gallery photos and site content.</p>
     </div>
 
-    <!-- Body -->
-    <div class="admin-body">
+    <!-- Note -->
+    <div class="note-box">
+      <i class="fa-solid fa-circle-info"></i>
+      <span>Changes apply <strong>on this browser only</strong>. They appear when you visit the site from this device.</span>
+    </div>
 
-      <!-- Save bar -->
-      <div class="save-bar">
-        <div class="save-status" id="saveStatus">
-          <i class="fa-solid fa-circle-dot"></i> Changes save automatically when you leave a field
-        </div>
-        <div class="save-bar-actions">
-          <button class="btn btn-primary btn-sm" onclick="saveAll()" style="width:auto">
-            <i class="fa-solid fa-floppy-disk"></i> Save All
-          </button>
-        </div>
+    <!-- ── GALLERY ── -->
+    <div class="config-section">
+      <div class="config-section-header">
+        <div class="section-icon"><i class="fa-solid fa-images"></i></div>
+        <div><h2>Gallery Photos</h2><p>Upload photos for each gallery slot</p></div>
       </div>
-
-      <!-- Note -->
-      <div class="note-box">
-        <i class="fa-solid fa-circle-info"></i>
-        <span>Changes apply <strong>on this browser only</strong>. They appear when you visit the site from this device. To make changes visible to all visitors, you need to edit the code files directly.</span>
+      <div class="config-section-body">
+        <div class="gallery-admin-grid" id="galleryAdminGrid"></div>
       </div>
+    </div>
 
-      <!-- ─── GALLERY ─── -->
-      <div class="config-section">
-        <div class="config-section-header">
-          <div class="section-icon"><i class="fa-solid fa-images"></i></div>
-          <div>
-            <h2>Gallery Photos</h2>
-            <p>Upload photos for each gallery slot — they appear on the main page</p>
-          </div>
+    <!-- ── SERVICES ── -->
+    <div class="config-section">
+      <div class="config-section-header">
+        <div class="section-icon"><i class="fa-solid fa-list-check"></i></div>
+        <div style="flex:1">
+          <h2>Services</h2>
+          <p>Add, remove or reorder the services shown on the page</p>
         </div>
-        <div class="config-section-body">
-          <div class="gallery-admin-grid" id="galleryAdminGrid">
-            <!-- slots generated by JS -->
-          </div>
-        </div>
+        <span id="svcCount" style="font-size:.82rem;color:var(--muted)"></span>
       </div>
+      <div class="config-section-body">
+        <div class="service-list" id="serviceList"></div>
 
-      <!-- ─── SERVICES ─── -->
-      <div class="config-section">
-        <div class="config-section-header">
-          <div class="section-icon"><i class="fa-solid fa-list-check"></i></div>
-          <div>
-            <h2>Services</h2>
-            <p>Turn off services you don't offer — they'll be hidden from the main page</p>
-          </div>
+        <!-- Add button -->
+        <div class="add-service-btn" id="addSvcBtn" onclick="toggleAddForm()">
+          <i class="fa-solid fa-plus"></i> Add New Service
         </div>
-        <div class="config-section-body">
-          <div class="service-toggle-list" id="serviceToggleList">
-            <!-- generated by JS -->
-          </div>
-        </div>
-      </div>
 
-      <!-- ─── CONTACT ─── -->
-      <div class="config-section">
-        <div class="config-section-header">
-          <div class="section-icon"><i class="fa-solid fa-address-book"></i></div>
-          <div>
-            <h2>Contact Information</h2>
-            <p>Phone, email and social media links</p>
-          </div>
-        </div>
-        <div class="config-section-body">
-          <div class="field-grid">
+        <!-- Add form -->
+        <div class="add-service-form" id="addSvcForm">
+          <h3><i class="fa-solid fa-plus"></i> New Service</h3>
+          <div class="form-row">
             <div class="field">
-              <label>WhatsApp Number</label>
-              <input type="text" id="cfgPhone" placeholder="16312047046" />
-              <span class="field-hint">Numbers only, with country code (e.g. 16312047046)</span>
+              <label>Service Name</label>
+              <input type="text" id="newSvcName" placeholder="e.g. Fence Installation" />
             </div>
             <div class="field">
-              <label>Phone Display Text</label>
-              <input type="text" id="cfgPhoneDisplay" placeholder="+1 (631) 204-7046" />
-              <span class="field-hint">Shown to visitors on the page</span>
+              <label>Icon</label>
+              <select id="newSvcIcon" onchange="updateIconPreview()">
+                <option value="fa-leaf">🌿 Leaf</option>
+                <option value="fa-tree">🌳 Tree</option>
+                <option value="fa-seedling">🌱 Seedling / Plant</option>
+                <option value="fa-scissors">✂️ Scissors</option>
+                <option value="fa-broom">🧹 Broom</option>
+                <option value="fa-fan">🌀 Fan / Grass</option>
+                <option value="fa-droplet">💧 Water Drop</option>
+                <option value="fa-square">⬛ Square / Stone</option>
+                <option value="fa-circle-minus">⭕ Circle</option>
+                <option value="fa-hammer">🔨 Hammer</option>
+                <option value="fa-wrench">🔧 Wrench</option>
+                <option value="fa-sun">☀️ Sun</option>
+                <option value="fa-bucket">🪣 Bucket</option>
+                <option value="fa-house">🏠 House</option>
+                <option value="fa-ruler">📏 Ruler</option>
+                <option value="fa-water">🌊 Water</option>
+                <option value="fa-star">⭐ Star</option>
+                <option value="fa-wind">💨 Wind</option>
+                <option value="fa-bolt">⚡ Bolt</option>
+              </select>
+              <div class="icon-preview">
+                <div class="icon-preview-badge" id="iconPreview"><i class="fa-solid fa-leaf"></i></div>
+                <span style="font-size:.8rem;color:var(--muted)">Preview</span>
+              </div>
             </div>
-          </div>
-          <div style="height:.9rem"></div>
-          <div class="field-grid">
-            <div class="field">
-              <label>Email Address</label>
-              <input type="text" id="cfgEmail" placeholder="23isa.vin@gmail.com" />
-            </div>
-            <div class="field">
-              <label>Facebook URL</label>
-              <input type="text" id="cfgFacebook" placeholder="https://facebook.com/yourpage" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ─── HERO ─── -->
-      <div class="config-section">
-        <div class="config-section-header">
-          <div class="section-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-          <div>
-            <h2>Hero Section</h2>
-            <p>Main headline and subtitle of the page</p>
-          </div>
-        </div>
-        <div class="config-section-body">
-          <div class="field" style="margin-bottom:.9rem">
-            <label>Green Highlight Text</label>
-            <input type="text" id="cfgHeroHighlight" placeholder="Green Paradise" />
-            <span class="field-hint">The word(s) shown in green in the main title</span>
           </div>
           <div class="field">
-            <label>Hero Subtitle</label>
-            <input type="text" id="cfgHeroSub" placeholder="Professional gardening and landscaping services." />
+            <label>Description</label>
+            <input type="text" id="newSvcDesc" placeholder="Short description shown on the service card" />
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-outline btn-sm" onclick="toggleAddForm()">Cancel</button>
+            <button class="btn btn-primary btn-sm" onclick="submitAddService()" style="width:auto">
+              <i class="fa-solid fa-plus"></i> Add Service
+            </button>
           </div>
         </div>
-      </div>
 
-      <!-- ─── STATS ─── -->
-      <div class="config-section">
-        <div class="config-section-header">
-          <div class="section-icon"><i class="fa-solid fa-chart-bar"></i></div>
-          <div>
-            <h2>Stats Numbers</h2>
-            <p>The four numbers shown in the bar below the hero</p>
-          </div>
-        </div>
-        <div class="config-section-body">
-          <div class="field-grid">
-            <div class="field">
-              <label>Years of Experience</label>
-              <input type="number" id="cfgStatYears" placeholder="10" min="0" />
-            </div>
-            <div class="field">
-              <label>Happy Clients</label>
-              <input type="number" id="cfgStatClients" placeholder="500" min="0" />
-            </div>
-            <div class="field">
-              <label>Gardens Transformed</label>
-              <input type="number" id="cfgStatGardens" placeholder="1000" min="0" />
-            </div>
-            <div class="field">
-              <label>Satisfaction %</label>
-              <input type="number" id="cfgStatSatisfaction" placeholder="100" min="0" max="100" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ─── DANGER ZONE ─── -->
-      <div class="danger-zone">
-        <div>
-          <h3><i class="fa-solid fa-triangle-exclamation"></i> Reset All Changes</h3>
-          <p>Remove all saved overrides and restore the original site content.</p>
-        </div>
-        <button class="btn btn-danger btn-sm" onclick="resetConfig()">
-          <i class="fa-solid fa-rotate-left"></i> Reset to Default
+        <button class="svc-restore-btn" onclick="restoreDefaultServices()">
+          <i class="fa-solid fa-rotate-left"></i> Restore original 10 services
         </button>
       </div>
+    </div>
 
-    </div><!-- /admin-body -->
-  </div><!-- /adminPanel -->
-
-  <!-- Change password modal -->
-  <div class="modal-overlay" id="changePwdModal">
-    <div class="modal-box">
-      <h2><i class="fa-solid fa-key"></i> Change Password</h2>
-      <div class="modal-error" id="pwdError"></div>
-      <label>Current Password</label>
-      <input type="password" id="pwdCurrent" placeholder="Current password" />
-      <label>New Password</label>
-      <input type="password" id="pwdNew1" placeholder="New password" />
-      <label>Confirm New Password</label>
-      <input type="password" id="pwdNew2" placeholder="Repeat new password" />
-      <div class="modal-actions">
-        <button class="btn btn-outline" onclick="closeChangePwd()">Cancel</button>
-        <button class="btn btn-primary" onclick="submitChangePwd()">Save</button>
+    <!-- ── CONTACT ── -->
+    <div class="config-section">
+      <div class="config-section-header">
+        <div class="section-icon"><i class="fa-solid fa-address-book"></i></div>
+        <div><h2>Contact Information</h2><p>Phone, email and social media links</p></div>
+      </div>
+      <div class="config-section-body">
+        <div class="field-grid">
+          <div class="field">
+            <label>WhatsApp Number</label>
+            <input type="text" id="cfgPhone" placeholder="16312047046" />
+            <span class="field-hint">Numbers only, with country code</span>
+          </div>
+          <div class="field">
+            <label>Phone Display Text</label>
+            <input type="text" id="cfgPhoneDisplay" placeholder="+1 (631) 204-7046" />
+            <span class="field-hint">Shown to visitors on the page</span>
+          </div>
+        </div>
+        <div style="height:.9rem"></div>
+        <div class="field-grid">
+          <div class="field">
+            <label>Email Address</label>
+            <input type="text" id="cfgEmail" placeholder="23isa.vin@gmail.com" />
+          </div>
+          <div class="field">
+            <label>Facebook URL</label>
+            <input type="text" id="cfgFacebook" placeholder="https://facebook.com/yourpage" />
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- ── HERO ── -->
+    <div class="config-section">
+      <div class="config-section-header">
+        <div class="section-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <div><h2>Hero Section</h2><p>Main headline and subtitle</p></div>
+      </div>
+      <div class="config-section-body">
+        <div class="field" style="margin-bottom:.9rem">
+          <label>Green Highlight Text</label>
+          <input type="text" id="cfgHeroHighlight" placeholder="Green Paradise" />
+          <span class="field-hint">The word(s) shown in green in the main title</span>
+        </div>
+        <div class="field">
+          <label>Hero Subtitle</label>
+          <input type="text" id="cfgHeroSub" placeholder="Professional gardening and landscaping services." />
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STATS ── -->
+    <div class="config-section">
+      <div class="config-section-header">
+        <div class="section-icon"><i class="fa-solid fa-chart-bar"></i></div>
+        <div><h2>Stats Numbers</h2><p>The four numbers shown below the hero</p></div>
+      </div>
+      <div class="config-section-body">
+        <div class="field-grid">
+          <div class="field"><label>Years of Experience</label><input type="number" id="cfgStatYears" placeholder="10" min="0" /></div>
+          <div class="field"><label>Happy Clients</label><input type="number" id="cfgStatClients" placeholder="500" min="0" /></div>
+          <div class="field"><label>Gardens Transformed</label><input type="number" id="cfgStatGardens" placeholder="1000" min="0" /></div>
+          <div class="field"><label>Satisfaction %</label><input type="number" id="cfgStatSatisfaction" placeholder="100" min="0" max="100" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DANGER ── -->
+    <div class="danger-zone">
+      <div>
+        <h3><i class="fa-solid fa-triangle-exclamation"></i> Reset Everything</h3>
+        <p>Remove all saved changes (including services and gallery photos) and restore the original site.</p>
+      </div>
+      <button class="btn btn-danger btn-sm" onclick="resetConfig()">
+        <i class="fa-solid fa-rotate-left"></i> Reset to Default
+      </button>
+    </div>
+
   </div>
+</div>
 
-  <!-- Toast -->
-  <div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i> <span id="toastMsg">Saved!</span></div>
+<!-- Password modal -->
+<div class="modal-overlay" id="changePwdModal">
+  <div class="modal-box">
+    <h2><i class="fa-solid fa-key"></i> Change Password</h2>
+    <div class="modal-error" id="pwdError"></div>
+    <label>Current Password</label><input type="password" id="pwdCurrent" placeholder="Current password" />
+    <label>New Password</label><input type="password" id="pwdNew1" placeholder="New password" />
+    <label>Confirm New Password</label><input type="password" id="pwdNew2" placeholder="Repeat new password" />
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeChangePwd()">Cancel</button>
+      <button class="btn btn-primary" onclick="submitChangePwd()">Save</button>
+    </div>
+  </div>
+</div>
 
-  <script>
-    const HASH_KEY    = 'ftl_admin_hash';
-    const SESSION_KEY = 'ftl_admin_session';
-    const CONFIG_KEY  = 'ftl_config';
+<div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i> <span id="toastMsg">Saved!</span></div>
 
-    const ALL_SERVICES = [
-      { name: 'Lawn Mowing & Weed Cutting',      icon: 'fa-leaf' },
-      { name: 'Yard & Property Cleanup',          icon: 'fa-broom' },
-      { name: 'Plant & Bush Trimming',            icon: 'fa-scissors' },
-      { name: 'Weed Removal',                     icon: 'fa-seedling' },
-      { name: 'Garden Maintenance',               icon: 'fa-fan' },
-      { name: 'Tree Planting',                    icon: 'fa-tree' },
-      { name: 'Tree Removal',                     icon: 'fa-circle-minus' },
-      { name: 'Garden Design & Creation',         icon: 'fa-leaf' },
-      { name: 'Irrigation Check & Installation',  icon: 'fa-droplet' },
-      { name: 'Stone Patios',                     icon: 'fa-square' },
-    ];
+<script>
+  const HASH_KEY    = 'ftl_admin_hash';
+  const SESSION_KEY = 'ftl_admin_session';
+  const CONFIG_KEY  = 'ftl_config';
 
-    const GALLERY_DEFAULTS = [
-      'Lawn Mowing', 'Garden Design', 'Tree Trimming', 'Yard Cleanup', 'Landscaping'
-    ];
+  const DEFAULT_SERVICES = [
+    { name: 'Lawn Mowing & Weed Cutting',     icon: 'fa-leaf',         desc: 'Precise and regular mowing to keep your lawn healthy, even, and looking great all year round.' },
+    { name: 'Yard & Property Cleanup',         icon: 'fa-broom',        desc: 'Full yard and property cleanups to keep your space tidy, ready, and in perfect condition.' },
+    { name: 'Plant & Bush Trimming',           icon: 'fa-scissors',     desc: 'Expert trimming and shaping of plants and bushes to promote healthy growth and beautiful structure.' },
+    { name: 'Weed Removal',                    icon: 'fa-seedling',     desc: 'Effective weed elimination for a clean, well-maintained garden free of unwanted growth.' },
+    { name: 'Garden Maintenance',              icon: 'fa-fan',          desc: 'Complete regular maintenance so your garden looks beautiful in every season of the year.' },
+    { name: 'Tree Planting',                   icon: 'fa-tree',         desc: 'Professional tree planting to add greenery, shade, and value to your property.' },
+    { name: 'Tree Removal',                    icon: 'fa-circle-minus', desc: 'Safe and professional removal of large or hazardous trees using specialized equipment.' },
+    { name: 'Garden Design & Creation',        icon: 'fa-leaf',         desc: 'Custom garden design and creation that reflects your vision, style, and personality.', premium: true },
+    { name: 'Irrigation Check & Installation', icon: 'fa-droplet',      desc: 'Inspection and installation of irrigation systems for optimal garden care and water efficiency.' },
+    { name: 'Stone Patios',                    icon: 'fa-square',       desc: 'Design and installation of stone patios to create beautiful and functional outdoor living spaces.' },
+  ];
 
-    /* ─── SHA-256 ─── */
-    async function sha256(str) {
-      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-    }
+  const GALLERY_DEFAULTS = ['Lawn Mowing','Garden Design','Tree Trimming','Yard Cleanup','Landscaping'];
 
-    /* ─── Boot ─── */
-    (function boot() {
-      const hasHash    = !!localStorage.getItem(HASH_KEY);
-      const hasSession = !!sessionStorage.getItem(SESSION_KEY);
-      if (!hasHash) {
-        document.getElementById('loginScreen').style.display  = 'none';
-        document.getElementById('createScreen').style.display = '';
-      } else if (hasSession) {
-        showAdmin();
-      }
-    })();
+  /* ─── SHA-256 ─── */
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
 
-    /* ─── Create password ─── */
-    async function handleCreate() {
-      const p1  = document.getElementById('createPass1').value;
-      const p2  = document.getElementById('createPass2').value;
-      const err = document.getElementById('createError');
-      err.style.display = 'none';
-      if (!p1) { showErr(err, 'Please enter a password.'); return; }
-      if (p1.length < 6) { showErr(err, 'Password must be at least 6 characters.'); return; }
-      if (p1 !== p2) { showErr(err, 'Passwords do not match.'); return; }
-      localStorage.setItem(HASH_KEY, await sha256(p1));
-      startSession();
-      showAdmin();
-    }
-
-    /* ─── Login ─── */
-    async function handleLogin() {
-      const pass = document.getElementById('loginPass').value;
-      const err  = document.getElementById('loginError');
-      err.style.display = 'none';
-      if (!pass) return;
-      if (await sha256(pass) !== localStorage.getItem(HASH_KEY)) {
-        err.style.display = ''; return;
-      }
-      startSession();
-      showAdmin();
-    }
-    document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') handleLogin(); });
-    document.getElementById('createPass2').addEventListener('keydown', e => { if (e.key === 'Enter') handleCreate(); });
-
-    /* ─── Session ─── */
-    function startSession() {
-      sessionStorage.setItem(SESSION_KEY, (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36)));
-    }
-
-    /* ─── Show admin ─── */
-    function showAdmin() {
+  /* ─── Boot ─── */
+  (function boot() {
+    const hasHash    = !!localStorage.getItem(HASH_KEY);
+    const hasSession = !!sessionStorage.getItem(SESSION_KEY);
+    if (!hasHash) {
       document.getElementById('loginScreen').style.display  = 'none';
-      document.getElementById('createScreen').style.display = 'none';
-      document.getElementById('adminPanel').style.display   = 'block';
-      buildGallerySlots();
-      buildServiceToggles();
-      loadFields();
-      bindAutoSave();
+      document.getElementById('createScreen').style.display = '';
+    } else if (hasSession) {
+      showAdmin();
     }
+  })();
 
-    /* ══════════════════════════════════
-       SERVICE TOGGLES
-    ══════════════════════════════════ */
-    function buildServiceToggles() {
-      const list   = document.getElementById('serviceToggleList');
-      const hidden = getConfig().hiddenServices || [];
-      list.innerHTML = '';
+  async function handleCreate() {
+    const p1 = document.getElementById('createPass1').value;
+    const p2 = document.getElementById('createPass2').value;
+    const err = document.getElementById('createError');
+    err.style.display = 'none';
+    if (!p1) { showErr(err,'Please enter a password.'); return; }
+    if (p1.length < 6) { showErr(err,'Minimum 6 characters.'); return; }
+    if (p1 !== p2) { showErr(err,'Passwords do not match.'); return; }
+    localStorage.setItem(HASH_KEY, await sha256(p1));
+    startSession(); showAdmin();
+  }
 
-      ALL_SERVICES.forEach(svc => {
-        const isHidden = hidden.includes(svc.name);
-        const row = document.createElement('div');
-        row.className = 'service-toggle-row' + (isHidden ? ' hidden-service' : '');
-        row.id = `svcrow-${svc.name}`;
-        row.innerHTML = `
-          <div class="svc-icon"><i class="fa-solid ${svc.icon}"></i></div>
-          <span class="svc-name">${svc.name}</span>
-          <label class="toggle" onclick="event.stopPropagation()">
-            <input type="checkbox" ${isHidden ? '' : 'checked'}
-              onchange="toggleService('${svc.name.replace(/'/g,"\\'")}', this.checked)" />
-            <span class="toggle-slider"></span>
-          </label>`;
-        row.addEventListener('click', () => {
-          const cb = row.querySelector('input[type=checkbox]');
-          cb.checked = !cb.checked;
-          toggleService(svc.name, cb.checked);
-        });
-        list.appendChild(row);
-      });
-    }
+  async function handleLogin() {
+    const pass = document.getElementById('loginPass').value;
+    const err  = document.getElementById('loginError');
+    err.style.display = 'none';
+    if (!pass) return;
+    if (await sha256(pass) !== localStorage.getItem(HASH_KEY)) { err.style.display = ''; return; }
+    startSession(); showAdmin();
+  }
 
-    function toggleService(name, enabled) {
-      const cfg = getConfig();
-      let hidden = cfg.hiddenServices || [];
-      if (enabled) {
-        hidden = hidden.filter(n => n !== name);
-      } else {
-        if (!hidden.includes(name)) hidden.push(name);
-      }
-      cfg.hiddenServices = hidden;
-      localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
+  document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key==='Enter') handleLogin(); });
+  document.getElementById('createPass2').addEventListener('keydown', e => { if (e.key==='Enter') handleCreate(); });
 
-      const row = document.getElementById(`svcrow-${name}`);
-      if (row) row.classList.toggle('hidden-service', !enabled);
-      showToast(enabled ? `"${name}" shown` : `"${name}" hidden`);
-    }
+  function startSession() {
+    sessionStorage.setItem(SESSION_KEY, crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36));
+  }
 
-    /* ─── Logout ─── */
-    function handleLogout() {
-      sessionStorage.removeItem(SESSION_KEY);
-      location.reload();
-    }
+  function showAdmin() {
+    document.getElementById('loginScreen').style.display  = 'none';
+    document.getElementById('createScreen').style.display = 'none';
+    document.getElementById('adminPanel').style.display   = 'block';
+    buildGallerySlots();
+    buildServiceList();
+    loadFields();
+    bindAutoSave();
+  }
 
-    /* ══════════════════════════════════
-       GALLERY SLOTS
-    ══════════════════════════════════ */
-    function buildGallerySlots() {
-      const grid = document.getElementById('galleryAdminGrid');
-      const cfg  = getConfig();
-      const gallery = cfg.gallery || [];
+  function handleLogout() { sessionStorage.removeItem(SESSION_KEY); location.reload(); }
 
-      grid.innerHTML = '';
-      for (let i = 0; i < 5; i++) {
-        const item  = gallery[i] || {};
-        const label = item.label || GALLERY_DEFAULTS[i];
-        const src   = item.src   || '';
-        const hasImg = !!src;
-
-        const slot = document.createElement('div');
-        slot.className = 'gallery-slot' + (hasImg ? ' has-image' : '');
-        slot.id = `gslot${i}`;
-
-        slot.innerHTML = `
-          <div class="gallery-slot-preview" id="gprev${i}">
-            ${hasImg
-              ? `<img src="${src}" alt="${label}" />`
-              : `<i class="fa-solid fa-camera"></i><span>No photo</span>`}
-            <div class="slot-overlay">
-              <button class="btn btn-sm" style="background:rgba(255,255,255,.9);color:#222;gap:.3rem"
-                onclick="triggerUpload(${i})">
-                <i class="fa-solid fa-upload"></i> Upload
-              </button>
-              ${hasImg ? `<button class="btn btn-sm" style="background:rgba(200,50,50,.85);color:#fff;gap:.3rem" onclick="removeGalleryImg(${i})"><i class="fa-solid fa-trash"></i></button>` : ''}
-            </div>
+  /* ══════════════════════════════════
+     GALLERY
+  ══════════════════════════════════ */
+  function buildGallerySlots() {
+    const grid    = document.getElementById('galleryAdminGrid');
+    const cfg     = getConfig();
+    const gallery = cfg.gallery || [];
+    grid.innerHTML = '';
+    for (let i = 0; i < 5; i++) {
+      const item   = gallery[i] || {};
+      const label  = item.label || GALLERY_DEFAULTS[i];
+      const src    = item.src   || '';
+      const hasImg = !!src;
+      const slot   = document.createElement('div');
+      slot.className = 'gallery-slot' + (hasImg ? ' has-image' : '');
+      slot.id = `gslot${i}`;
+      slot.innerHTML = `
+        <div class="gallery-slot-preview" id="gprev${i}">
+          ${hasImg ? `<img src="${src}" alt="${label}" />` : `<i class="fa-solid fa-camera"></i><span>No photo</span>`}
+          <div class="slot-overlay">
+            <button class="btn btn-sm" style="background:rgba(255,255,255,.9);color:#222" onclick="triggerUpload(${i})"><i class="fa-solid fa-upload"></i> Upload</button>
+            ${hasImg ? `<button class="btn btn-sm" style="background:rgba(200,50,50,.85);color:#fff" onclick="removeGalleryImg(${i})"><i class="fa-solid fa-trash"></i></button>` : ''}
           </div>
-          <input type="file" id="gfile${i}" accept="image/*" onchange="onFileSelected(${i}, this)" />
-          <div class="gallery-slot-body">
-            <input type="text" id="glabel${i}" placeholder="${GALLERY_DEFAULTS[i]}"
-              value="${label !== GALLERY_DEFAULTS[i] ? label : ''}"
-              onchange="saveGalleryLabel(${i}, this.value)"
-              title="Caption shown on hover" />
-            <div class="gallery-slot-actions">
-              <button class="btn btn-outline btn-sm" onclick="triggerUpload(${i})">
-                <i class="fa-solid fa-upload"></i> ${hasImg ? 'Change' : 'Upload'}
-              </button>
-              ${hasImg ? `<button class="btn btn-danger btn-sm" onclick="removeGalleryImg(${i})"><i class="fa-solid fa-trash"></i></button>` : ''}
-            </div>
-          </div>`;
-        grid.appendChild(slot);
-      }
+        </div>
+        <input type="file" id="gfile${i}" accept="image/*" onchange="onFileSelected(${i},this)" />
+        <div class="gallery-slot-body">
+          <input type="text" id="glabel${i}" placeholder="${GALLERY_DEFAULTS[i]}"
+            value="${label !== GALLERY_DEFAULTS[i] ? label : ''}"
+            onchange="saveGalleryLabel(${i},this.value)" title="Caption on hover" />
+          <div class="gallery-slot-actions">
+            <button class="btn btn-outline btn-sm" onclick="triggerUpload(${i})"><i class="fa-solid fa-upload"></i> ${hasImg ? 'Change' : 'Upload'}</button>
+            ${hasImg ? `<button class="btn btn-danger btn-sm" onclick="removeGalleryImg(${i})"><i class="fa-solid fa-trash"></i></button>` : ''}
+          </div>
+        </div>`;
+      grid.appendChild(slot);
     }
+  }
 
-    function triggerUpload(i) {
-      document.getElementById(`gfile${i}`).click();
-    }
+  function triggerUpload(i) { document.getElementById(`gfile${i}`).click(); }
 
-    function onFileSelected(i, input) {
-      const file = input.files[0];
-      if (!file) return;
-      compressImage(file, 900, 700, 0.78).then(src => {
-        saveGalleryImg(i, src);
-        buildGallerySlots();
-        showToast('Photo saved!');
-      });
-    }
+  function onFileSelected(i, input) {
+    const file = input.files[0];
+    if (!file) return;
+    compressImage(file, 900, 700, 0.78).then(src => {
+      saveGalleryImg(i, src);
+      buildGallerySlots();
+      showToast('Photo saved!');
+    });
+  }
 
-    function compressImage(file, maxW, maxH, quality) {
-      return new Promise(resolve => {
-        const reader = new FileReader();
-        reader.onload = e => {
-          const img = new Image();
-          img.onload = () => {
-            let w = img.width, h = img.height;
-            if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
-            if (h > maxH) { w = Math.round(w * maxH / h); h = maxH; }
-            const c = document.createElement('canvas');
-            c.width = w; c.height = h;
-            c.getContext('2d').drawImage(img, 0, 0, w, h);
-            resolve(c.toDataURL('image/jpeg', quality));
-          };
-          img.src = e.target.result;
+  function compressImage(file, maxW, maxH, quality) {
+    return new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = new Image();
+        img.onload = () => {
+          let w = img.width, h = img.height;
+          if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
+          if (h > maxH) { w = Math.round(w * maxH / h); h = maxH; }
+          const c = document.createElement('canvas');
+          c.width = w; c.height = h;
+          c.getContext('2d').drawImage(img, 0, 0, w, h);
+          resolve(c.toDataURL('image/jpeg', quality));
         };
-        reader.readAsDataURL(file);
-      });
-    }
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
 
-    function saveGalleryImg(i, src) {
-      const cfg = getConfig();
-      if (!Array.isArray(cfg.gallery)) cfg.gallery = [];
-      while (cfg.gallery.length <= i) cfg.gallery.push({});
-      cfg.gallery[i].src = src;
-      if (!cfg.gallery[i].label) cfg.gallery[i].label = GALLERY_DEFAULTS[i];
-      localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
-    }
+  function saveGalleryImg(i, src) {
+    const cfg = getConfig();
+    if (!Array.isArray(cfg.gallery)) cfg.gallery = [];
+    while (cfg.gallery.length <= i) cfg.gallery.push({});
+    cfg.gallery[i].src   = src;
+    if (!cfg.gallery[i].label) cfg.gallery[i].label = GALLERY_DEFAULTS[i];
+    localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
+  }
 
-    function saveGalleryLabel(i, label) {
-      const cfg = getConfig();
-      if (!Array.isArray(cfg.gallery)) cfg.gallery = [];
-      while (cfg.gallery.length <= i) cfg.gallery.push({});
-      cfg.gallery[i].label = label || GALLERY_DEFAULTS[i];
-      localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
-      showToast('Caption saved!');
-    }
+  function saveGalleryLabel(i, label) {
+    const cfg = getConfig();
+    if (!Array.isArray(cfg.gallery)) cfg.gallery = [];
+    while (cfg.gallery.length <= i) cfg.gallery.push({});
+    cfg.gallery[i].label = label || GALLERY_DEFAULTS[i];
+    localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
+    showToast('Caption saved!');
+  }
 
-    function removeGalleryImg(i) {
-      const cfg = getConfig();
-      if (Array.isArray(cfg.gallery) && cfg.gallery[i]) {
-        cfg.gallery[i].src = '';
-      }
-      localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
-      buildGallerySlots();
-      showToast('Photo removed.');
-    }
+  function removeGalleryImg(i) {
+    const cfg = getConfig();
+    if (Array.isArray(cfg.gallery) && cfg.gallery[i]) cfg.gallery[i].src = '';
+    localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
+    buildGallerySlots();
+    showToast('Photo removed.');
+  }
 
-    /* ══════════════════════════════════
-       FIELDS LOAD / SAVE
-    ══════════════════════════════════ */
-    function getConfig() {
-      try { return JSON.parse(localStorage.getItem(CONFIG_KEY) || '{}'); } catch { return {}; }
-    }
+  /* ══════════════════════════════════
+     SERVICES CRUD
+  ══════════════════════════════════ */
+  function getServices() {
+    const cfg = getConfig();
+    return Array.isArray(cfg.services) ? cfg.services : DEFAULT_SERVICES;
+  }
 
-    function loadFields() {
-      const cfg = getConfig();
-      setVal('cfgPhone',            cfg.phone            || '');
-      setVal('cfgPhoneDisplay',     cfg.phoneDisplay     || '');
-      setVal('cfgEmail',            cfg.email            || '');
-      setVal('cfgFacebook',         cfg.facebook         || '');
-      setVal('cfgHeroHighlight',    cfg.heroHighlight    || '');
-      setVal('cfgHeroSub',          cfg.heroSub          || '');
-      setVal('cfgStatYears',        cfg.statYears        != null ? cfg.statYears        : '');
-      setVal('cfgStatClients',      cfg.statClients      != null ? cfg.statClients      : '');
-      setVal('cfgStatGardens',      cfg.statGardens      != null ? cfg.statGardens      : '');
-      setVal('cfgStatSatisfaction', cfg.statSatisfaction != null ? cfg.statSatisfaction : '');
-    }
+  function saveServices(list) {
+    const cfg = getConfig();
+    cfg.services = list;
+    localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
+  }
 
-    function setVal(id, val) {
+  function buildServiceList() {
+    const list     = document.getElementById('serviceList');
+    const services = getServices();
+    const countEl  = document.getElementById('svcCount');
+    countEl.textContent = `${services.length} service${services.length !== 1 ? 's' : ''}`;
+    list.innerHTML = '';
+
+    services.forEach((svc, i) => {
+      const row = document.createElement('div');
+      row.className = 'service-row';
+      row.innerHTML = `
+        <div class="svc-icon-badge"><i class="fa-solid ${svc.icon}"></i></div>
+        <div class="svc-info">
+          <strong>${svc.name}</strong>
+          <small>${svc.desc || ''}</small>
+        </div>
+        ${svc.premium ? '<span class="svc-premium">Premium</span>' : ''}
+        <button class="svc-delete" onclick="deleteService(${i})" title="Remove service">
+          <i class="fa-solid fa-xmark"></i>
+        </button>`;
+      list.appendChild(row);
+    });
+  }
+
+  function deleteService(i) {
+    const services = getServices();
+    const name     = services[i]?.name || 'this service';
+    if (!confirm(`Remove "${name}" from the services list?`)) return;
+    services.splice(i, 1);
+    saveServices(services);
+    buildServiceList();
+    showToast(`"${name}" removed.`);
+  }
+
+  function toggleAddForm() {
+    const form = document.getElementById('addSvcForm');
+    const isOpen = form.classList.toggle('open');
+    if (isOpen) {
+      document.getElementById('newSvcName').focus();
+      updateIconPreview();
+    } else {
+      document.getElementById('newSvcName').value = '';
+      document.getElementById('newSvcDesc').value = '';
+      document.getElementById('newSvcIcon').value = 'fa-leaf';
+      updateIconPreview();
+    }
+  }
+
+  function updateIconPreview() {
+    const icon = document.getElementById('newSvcIcon').value;
+    const prev = document.getElementById('iconPreview');
+    prev.innerHTML = `<i class="fa-solid ${icon}"></i>`;
+  }
+
+  function submitAddService() {
+    const name = document.getElementById('newSvcName').value.trim();
+    const icon = document.getElementById('newSvcIcon').value;
+    const desc = document.getElementById('newSvcDesc').value.trim();
+    if (!name) { document.getElementById('newSvcName').focus(); return; }
+
+    const services = getServices();
+    services.push({ name, icon, desc });
+    saveServices(services);
+    buildServiceList();
+    toggleAddForm();
+    showToast(`"${name}" added!`);
+  }
+
+  function restoreDefaultServices() {
+    if (!confirm('This will replace your current services with the original 10. Continue?')) return;
+    saveServices(DEFAULT_SERVICES);
+    buildServiceList();
+    showToast('Services restored to default!');
+  }
+
+  /* ══════════════════════════════════
+     FIELDS / SAVE
+  ══════════════════════════════════ */
+  function getConfig() {
+    try { return JSON.parse(localStorage.getItem(CONFIG_KEY) || '{}'); } catch { return {}; }
+  }
+
+  function loadFields() {
+    const cfg = getConfig();
+    setVal('cfgPhone',            cfg.phone            || '');
+    setVal('cfgPhoneDisplay',     cfg.phoneDisplay     || '');
+    setVal('cfgEmail',            cfg.email            || '');
+    setVal('cfgFacebook',         cfg.facebook         || '');
+    setVal('cfgHeroHighlight',    cfg.heroHighlight    || '');
+    setVal('cfgHeroSub',          cfg.heroSub          || '');
+    setVal('cfgStatYears',        cfg.statYears        != null ? cfg.statYears        : '');
+    setVal('cfgStatClients',      cfg.statClients      != null ? cfg.statClients      : '');
+    setVal('cfgStatGardens',      cfg.statGardens      != null ? cfg.statGardens      : '');
+    setVal('cfgStatSatisfaction', cfg.statSatisfaction != null ? cfg.statSatisfaction : '');
+  }
+
+  function setVal(id, val) { const el = document.getElementById(id); if (el) el.value = val; }
+
+  function bindAutoSave() {
+    ['cfgPhone','cfgPhoneDisplay','cfgEmail','cfgFacebook',
+     'cfgHeroHighlight','cfgHeroSub',
+     'cfgStatYears','cfgStatClients','cfgStatGardens','cfgStatSatisfaction'
+    ].forEach(id => {
       const el = document.getElementById(id);
-      if (el) el.value = val;
-    }
+      if (el) el.addEventListener('change', saveAll);
+    });
+  }
 
-    function bindAutoSave() {
-      ['cfgPhone','cfgPhoneDisplay','cfgEmail','cfgFacebook',
-       'cfgHeroHighlight','cfgHeroSub',
-       'cfgStatYears','cfgStatClients','cfgStatGardens','cfgStatSatisfaction'
-      ].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.addEventListener('change', saveAll);
-      });
-    }
+  function saveAll() {
+    if (!sessionStorage.getItem(SESSION_KEY)) return;
+    const cfg = getConfig();
 
-    function saveAll() {
-      if (!sessionStorage.getItem(SESSION_KEY)) return;
-      const cfg = getConfig();
+    const phone = document.getElementById('cfgPhone').value.trim().replace(/\D/g,'');
+    if (phone) cfg.phone = phone; else delete cfg.phone;
+    const pd = document.getElementById('cfgPhoneDisplay').value.trim();
+    if (pd) cfg.phoneDisplay = pd; else delete cfg.phoneDisplay;
+    const em = document.getElementById('cfgEmail').value.trim();
+    if (em) cfg.email = em; else delete cfg.email;
+    const fb = document.getElementById('cfgFacebook').value.trim();
+    if (fb) cfg.facebook = fb; else delete cfg.facebook;
+    const hh = document.getElementById('cfgHeroHighlight').value.trim();
+    if (hh) cfg.heroHighlight = hh; else delete cfg.heroHighlight;
+    const hs = document.getElementById('cfgHeroSub').value.trim();
+    if (hs) cfg.heroSub = hs; else delete cfg.heroSub;
+    const sy = document.getElementById('cfgStatYears').value;
+    if (sy !== '') cfg.statYears = parseInt(sy,10); else delete cfg.statYears;
+    const sc = document.getElementById('cfgStatClients').value;
+    if (sc !== '') cfg.statClients = parseInt(sc,10); else delete cfg.statClients;
+    const sg = document.getElementById('cfgStatGardens').value;
+    if (sg !== '') cfg.statGardens = parseInt(sg,10); else delete cfg.statGardens;
+    const ss = document.getElementById('cfgStatSatisfaction').value;
+    if (ss !== '') cfg.statSatisfaction = parseInt(ss,10); else delete cfg.statSatisfaction;
 
-      const phone = document.getElementById('cfgPhone').value.trim().replace(/\D/g, '');
-      if (phone) cfg.phone = phone; else delete cfg.phone;
+    localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
+    showToast('Saved!'); flashStatus();
+  }
 
-      const pd = document.getElementById('cfgPhoneDisplay').value.trim();
-      if (pd) cfg.phoneDisplay = pd; else delete cfg.phoneDisplay;
+  function resetConfig() {
+    if (!confirm('Remove ALL saved changes including gallery photos and services? This cannot be undone.')) return;
+    localStorage.removeItem(CONFIG_KEY);
+    loadFields(); buildGallerySlots(); buildServiceList();
+    showToast('Reset to default!');
+  }
 
-      const em = document.getElementById('cfgEmail').value.trim();
-      if (em) cfg.email = em; else delete cfg.email;
+  /* ── Toast / Status ── */
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    t.classList.add('show');
+    clearTimeout(t._timer);
+    t._timer = setTimeout(() => t.classList.remove('show'), 2500);
+  }
+  function flashStatus() {
+    const el = document.getElementById('saveStatus');
+    el.className = 'save-status saved';
+    el.innerHTML = '<i class="fa-solid fa-circle-check"></i> All changes saved!';
+    setTimeout(() => { el.className = 'save-status'; el.innerHTML = '<i class="fa-solid fa-circle-dot"></i> Changes save automatically'; }, 3000);
+  }
 
-      const fb = document.getElementById('cfgFacebook').value.trim();
-      if (fb) cfg.facebook = fb; else delete cfg.facebook;
+  /* ── Change password ── */
+  function openChangePwd() {
+    document.getElementById('changePwdModal').classList.add('open');
+    ['pwdCurrent','pwdNew1','pwdNew2'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('pwdError').style.display = 'none';
+  }
+  function closeChangePwd() { document.getElementById('changePwdModal').classList.remove('open'); }
+  async function submitChangePwd() {
+    const curr = document.getElementById('pwdCurrent').value;
+    const n1   = document.getElementById('pwdNew1').value;
+    const n2   = document.getElementById('pwdNew2').value;
+    const err  = document.getElementById('pwdError');
+    err.style.display = 'none';
+    if (!curr||!n1||!n2) { showErr(err,'Fill all fields.'); return; }
+    if (n1!==n2)         { showErr(err,'Passwords do not match.'); return; }
+    if (n1.length < 6)   { showErr(err,'Min. 6 characters.'); return; }
+    if (await sha256(curr) !== localStorage.getItem(HASH_KEY)) { showErr(err,'Current password is incorrect.'); return; }
+    localStorage.setItem(HASH_KEY, await sha256(n1));
+    closeChangePwd(); showToast('Password changed!');
+  }
 
-      const hh = document.getElementById('cfgHeroHighlight').value.trim();
-      if (hh) cfg.heroHighlight = hh; else delete cfg.heroHighlight;
-
-      const hs = document.getElementById('cfgHeroSub').value.trim();
-      if (hs) cfg.heroSub = hs; else delete cfg.heroSub;
-
-      const sy = document.getElementById('cfgStatYears').value;
-      if (sy !== '') cfg.statYears = parseInt(sy, 10); else delete cfg.statYears;
-
-      const sc = document.getElementById('cfgStatClients').value;
-      if (sc !== '') cfg.statClients = parseInt(sc, 10); else delete cfg.statClients;
-
-      const sg = document.getElementById('cfgStatGardens').value;
-      if (sg !== '') cfg.statGardens = parseInt(sg, 10); else delete cfg.statGardens;
-
-      const ss = document.getElementById('cfgStatSatisfaction').value;
-      if (ss !== '') cfg.statSatisfaction = parseInt(ss, 10); else delete cfg.statSatisfaction;
-
-      localStorage.setItem(CONFIG_KEY, JSON.stringify(cfg));
-      showToast('Saved!');
-      flashStatus();
-    }
-
-    /* ─── Toast ─── */
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      document.getElementById('toastMsg').textContent = msg;
-      t.classList.add('show');
-      clearTimeout(t._timer);
-      t._timer = setTimeout(() => t.classList.remove('show'), 2500);
-    }
-
-    function flashStatus() {
-      const el = document.getElementById('saveStatus');
-      el.className = 'save-status saved';
-      el.innerHTML = '<i class="fa-solid fa-circle-check"></i> All changes saved!';
-      setTimeout(() => {
-        el.className = 'save-status';
-        el.innerHTML = '<i class="fa-solid fa-circle-dot"></i> Changes save automatically when you leave a field';
-      }, 3000);
-    }
-
-    /* ─── Reset ─── */
-    function resetConfig() {
-      if (!confirm('This will remove ALL your saved changes including gallery photos. Continue?')) return;
-      localStorage.removeItem(CONFIG_KEY);
-      loadFields();
-      buildGallerySlots();
-      showToast('Reset to default!');
-    }
-
-    /* ─── Change password ─── */
-    function openChangePwd() {
-      document.getElementById('changePwdModal').classList.add('open');
-      ['pwdCurrent','pwdNew1','pwdNew2'].forEach(id => document.getElementById(id).value = '');
-      document.getElementById('pwdError').style.display = 'none';
-    }
-    function closeChangePwd() {
-      document.getElementById('changePwdModal').classList.remove('open');
-    }
-    async function submitChangePwd() {
-      const curr = document.getElementById('pwdCurrent').value;
-      const n1   = document.getElementById('pwdNew1').value;
-      const n2   = document.getElementById('pwdNew2').value;
-      const err  = document.getElementById('pwdError');
-      err.style.display = 'none';
-      if (!curr || !n1 || !n2)  { showErr(err, 'Fill all fields.'); return; }
-      if (n1 !== n2)             { showErr(err, 'New passwords do not match.'); return; }
-      if (n1.length < 6)         { showErr(err, 'Min. 6 characters.'); return; }
-      if (await sha256(curr) !== localStorage.getItem(HASH_KEY)) {
-        showErr(err, 'Current password is incorrect.'); return;
-      }
-      localStorage.setItem(HASH_KEY, await sha256(n1));
-      closeChangePwd();
-      showToast('Password changed!');
-    }
-
-    function showErr(el, msg) { el.textContent = msg; el.style.display = ''; }
-  </script>
+  function showErr(el, msg) { el.textContent = msg; el.style.display = ''; }
+</script>
 </body>
 </html>

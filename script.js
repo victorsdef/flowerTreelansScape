@@ -54,11 +54,29 @@ function applyConfig() {
     if (el) { el.dataset.target = val; el.textContent = '0'; }
   });
 
-  if (Array.isArray(cfg.hiddenServices)) {
-    cfg.hiddenServices.forEach(name => {
-      const card = document.querySelector(`.card[data-service="${name}"]`);
-      if (card) card.style.display = 'none';
-    });
+  if (Array.isArray(cfg.services) && cfg.services.length > 0) {
+    const grid = document.querySelector('.services-grid');
+    if (grid) {
+      grid.innerHTML = '';
+      const delays = ['', ' delay-1', ' delay-2', ' delay-3'];
+      cfg.services.forEach((svc, i) => {
+        const card = document.createElement('div');
+        card.className = `card reveal${delays[i % 4]}`;
+        card.dataset.service = svc.name;
+        card.dataset.icon    = svc.icon;
+        card.innerHTML = `
+          <div class="card-icon"><i class="fa-solid ${svc.icon}"></i></div>
+          <h3>${svc.name}</h3>
+          <p>${svc.desc || ''}</p>
+          ${svc.premium ? '<span class="card-tag">Premium</span>' : ''}
+          <div class="card-actions">
+            <span class="card-see-more">See photos <i class="fa-solid fa-arrow-right"></i></span>
+            <button class="btn-add-cart" onclick="addToCart(this,event)"><i class="fa-solid fa-plus"></i> Add</button>
+          </div>`;
+        grid.appendChild(card);
+        revealObserver.observe(card);
+      });
+    }
   }
 
   if (Array.isArray(cfg.gallery)) {
@@ -464,10 +482,11 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-document.querySelectorAll('.card[data-service]').forEach(card => {
-  card.addEventListener('click', () => {
+document.querySelector('.services-grid')?.addEventListener('click', e => {
+  const card = e.target.closest('.card[data-service]');
+  if (card && !e.target.closest('.btn-add-cart')) {
     openModal(card.dataset.service, card.dataset.icon);
-  });
+  }
 });
 
 modalClose.addEventListener('click', closeModal);
