@@ -466,49 +466,59 @@
   </button>
 
   <!-- ═══════════════════════════════════════
-       MODAL CARRITO
+       CARRITO LATERAL
   ═══════════════════════════════════════ -->
-  <div class="cart-modal" id="cartModal">
-    <div class="modal-backdrop" id="cartBackdrop" onclick="closeCart()"></div>
-    <div class="cart-box">
-      <div class="cart-header">
-        <h3><i class="fa-solid fa-cart-shopping"></i> Tu Solicitud</h3>
-        <button class="modal-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button>
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+
+    <!-- Cabecera -->
+    <div class="drawer-header">
+      <div class="drawer-title">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span>Mi Carrito</span>
+        <span class="drawer-count" id="drawerCount">0 servicios</span>
       </div>
-
-      <div class="cart-empty" id="cartEmpty">
-        <i class="fa-solid fa-leaf"></i>
-        <p>Agrega servicios para solicitar una cotización</p>
-      </div>
-
-      <ul class="cart-list" id="cartList"></ul>
-
-      <div class="cart-footer" id="cartFooter" style="display:none">
-        <div class="cart-note">
-          <i class="fa-solid fa-circle-info"></i>
-          Los precios se acuerdan según el tamaño del trabajo. Te contactamos para confirmar.
-        </div>
-
-        <div class="pay-methods">
-          <div class="pay-title">Métodos de pago aceptados:</div>
-          <div class="pay-options">
-            <div class="pay-option">
-              <i class="fa-brands fa-whatsapp"></i>
-              <span>Efectivo</span>
-            </div>
-            <div class="pay-option zelle">
-              <i class="fa-solid fa-mobile-screen-button"></i>
-              <span>Zelle <strong>+1 (631) 204-7046</strong></span>
-            </div>
-          </div>
-        </div>
-
-        <a href="#" id="cartWA" class="btn-primary cart-send" target="_blank" rel="noopener">
-          <i class="fa-brands fa-whatsapp"></i> Solicitar Cotización por WhatsApp
-        </a>
-        <button class="cart-clear" onclick="clearCart()">Limpiar lista</button>
-      </div>
+      <button class="drawer-close" onclick="closeCart()" aria-label="Cerrar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
+
+    <!-- Carrito vacío -->
+    <div class="drawer-empty" id="cartEmpty">
+      <div class="drawer-empty-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+      <p>Tu carrito está vacío</p>
+      <small>Agrega servicios para solicitar una cotización</small>
+      <button class="drawer-browse" onclick="closeCart()">Ver Servicios</button>
+    </div>
+
+    <!-- Lista de items -->
+    <div class="drawer-items" id="cartList"></div>
+
+    <!-- Footer con pago -->
+    <div class="drawer-footer" id="cartFooter" style="display:none">
+      <div class="drawer-summary">
+        <span>Servicios seleccionados</span>
+        <span id="cartCount">0</span>
+      </div>
+
+      <div class="drawer-pay">
+        <div class="drawer-pay-label"><i class="fa-solid fa-shield-halved"></i> Métodos de pago aceptados</div>
+        <div class="drawer-pay-options">
+          <div class="drawer-pay-chip"><i class="fa-solid fa-money-bill-wave"></i> Efectivo</div>
+          <div class="drawer-pay-chip zelle"><i class="fa-solid fa-mobile-screen-button"></i> Zelle · +1 (631) 204-7046</div>
+        </div>
+      </div>
+
+      <a href="#" id="cartWA" class="drawer-checkout" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>Solicitar Cotización</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+      <button class="drawer-clear" onclick="clearCart()">
+        <i class="fa-solid fa-trash"></i> Vaciar carrito
+      </button>
+    </div>
+
   </div>
 
   <!-- ═══════════════════════════════════════

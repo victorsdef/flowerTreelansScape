@@ -89,33 +89,57 @@ window.addEventListener('load', () => {
   });
 });
 
-/* ── Carrito ── */
-const cartItems = new Set();
-const cartFloat  = document.getElementById('cartFloat');
-const cartModal  = document.getElementById('cartModal');
-const cartBadge  = document.getElementById('cartBadge');
-const cartList   = document.getElementById('cartList');
-const cartEmpty  = document.getElementById('cartEmpty');
-const cartFooter = document.getElementById('cartFooter');
-const cartWA     = document.getElementById('cartWA');
+/* ── Carrito Drawer ── */
+const cartItems   = new Set();
+const cartBadge   = document.getElementById('cartBadge');
+const cartOverlay = document.getElementById('cartOverlay');
+const cartDrawer  = document.getElementById('cartDrawer');
+const cartList    = document.getElementById('cartList');
+const cartEmpty   = document.getElementById('cartEmpty');
+const cartFooter  = document.getElementById('cartFooter');
+const cartWA      = document.getElementById('cartWA');
+const drawerCount = document.getElementById('drawerCount');
+const cartCount   = document.getElementById('cartCount');
+
+const iconMap = {
+  'fa-leaf':'fa-leaf','fa-broom':'fa-broom','fa-scissors':'fa-scissors',
+  'fa-seedling':'fa-seedling','fa-fan':'fa-fan','fa-tree':'fa-tree',
+  'fa-circle-minus':'fa-circle-minus','fa-droplet':'fa-droplet','fa-square':'fa-square'
+};
 
 function updateCart() {
-  cartBadge.textContent = cartItems.size;
-  cartBadge.classList.toggle('show', cartItems.size > 0);
+  const n = cartItems.size;
+  cartBadge.textContent = n;
+  cartBadge.classList.toggle('show', n > 0);
+  drawerCount.textContent = `${n} servicio${n !== 1 ? 's' : ''}`;
+  cartCount.textContent   = n;
   cartList.innerHTML = '';
-  if (cartItems.size === 0) {
-    cartEmpty.style.display = '';
+
+  if (n === 0) {
+    cartEmpty.style.display  = '';
     cartFooter.style.display = 'none';
   } else {
-    cartEmpty.style.display = 'none';
+    cartEmpty.style.display  = 'none';
     cartFooter.style.display = '';
-    cartItems.forEach(name => {
-      const li = document.createElement('li');
-      li.innerHTML = `<i class="fa-solid fa-leaf"></i><span style="flex:1">${name}</span><button class="cart-remove" onclick="removeFromCart('${name.replace(/'/g,"\\'")}')"><i class="fa-solid fa-xmark"></i></button>`;
-      cartList.appendChild(li);
+    cartItems.forEach((name) => {
+      const card    = document.querySelector(`.card[data-service="${name}"]`);
+      const icon    = card ? card.dataset.icon : 'fa-leaf';
+      const safeName = name.replace(/"/g, '&quot;');
+      const div = document.createElement('div');
+      div.className = 'drawer-item';
+      div.innerHTML = `
+        <div class="drawer-item-icon"><i class="fa-solid ${icon}"></i></div>
+        <div class="drawer-item-info">
+          <div class="drawer-item-name">${name}</div>
+          <div class="drawer-item-sub">Servicio profesional</div>
+        </div>
+        <button class="drawer-item-remove" onclick="removeFromCart('${name.replace(/'/g,"\\'")}')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>`;
+      cartList.appendChild(div);
     });
-    const serviceList = [...cartItems].map(s => `  - ${s}`).join('\n');
-    const msg = `*FLOWER TREE LANDSCAPE*\n\nHola! Quisiera una cotizacion para los siguientes servicios:\n\n${serviceList}\n\nGracias!`;
+    const list = [...cartItems].map(s => `  - ${s}`).join('\n');
+    const msg  = `*FLOWER TREE LANDSCAPE*\n\nHola! Quisiera una cotizacion para los siguientes servicios:\n\n${list}\n\nGracias!`;
     cartWA.href = `https://wa.me/16312047046?text=${encodeURIComponent(msg)}`;
   }
 }
@@ -123,6 +147,7 @@ function updateCart() {
 function addToCart(btn, e) {
   e.stopPropagation();
   const name = btn.closest('.card').dataset.service;
+  if (cartItems.has(name)) return;
   cartItems.add(name);
   btn.innerHTML = '<i class="fa-solid fa-check"></i> Agregado';
   btn.classList.add('added');
@@ -153,8 +178,16 @@ function clearCart() {
   updateCart();
 }
 
-function openCart()  { cartModal.classList.add('open');    document.body.style.overflow = 'hidden'; }
-function closeCart() { cartModal.classList.remove('open'); document.body.style.overflow = ''; }
+function openCart() {
+  cartDrawer.classList.add('open');
+  cartOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  cartDrawer.classList.remove('open');
+  cartOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
 
 /* ── Modal de servicio ── */
