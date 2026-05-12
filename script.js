@@ -115,7 +115,7 @@ function updateCart() {
       cartList.appendChild(li);
     });
     const serviceList = [...cartItems].map(s => `  - ${s}`).join('\n');
-    const msg = `*FLOWER TREE LANDSCAPE*\n\nHola! Quisiera una cotizacion para los siguientes servicios:\n\n${serviceList}\n\n*Direccion:* \n*Tamano del area:* \n*Fecha preferida:* \n*Detalles:* \n\nGracias!`;
+    const msg = `*FLOWER TREE LANDSCAPE*\n\nHola! Quisiera una cotizacion para los siguientes servicios:\n\n${serviceList}\n\nGracias!`;
     cartWA.href = `https://wa.me/16312047046?text=${encodeURIComponent(msg)}`;
   }
 }
@@ -168,7 +168,7 @@ const modalBackdrop = document.getElementById('modalBackdrop');
 function openModal(name, icon) {
   modalTitle.textContent = name;
   modalIcon.className = `fa-solid ${icon}`;
-  const msgModal = `*FLOWER TREE LANDSCAPE*\n\nHola! Me interesa el servicio de *${name}*.\n\n*Direccion:* \n*Tamano del area:* \n*Fecha preferida:* \n*Detalles:* \n\nGracias!`;
+  const msgModal = `*FLOWER TREE LANDSCAPE*\n\nHola! Me interesa el servicio de *${name}*.\n\nGracias!`;
   modalWA.href = `https://wa.me/16312047046?text=${encodeURIComponent(msgModal)}`;
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
