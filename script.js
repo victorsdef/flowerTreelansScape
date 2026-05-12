@@ -89,6 +89,73 @@ window.addEventListener('load', () => {
   });
 });
 
+/* ── Carrito ── */
+const cartItems = new Set();
+const cartFloat  = document.getElementById('cartFloat');
+const cartModal  = document.getElementById('cartModal');
+const cartBadge  = document.getElementById('cartBadge');
+const cartList   = document.getElementById('cartList');
+const cartEmpty  = document.getElementById('cartEmpty');
+const cartFooter = document.getElementById('cartFooter');
+const cartWA     = document.getElementById('cartWA');
+
+function updateCart() {
+  cartBadge.textContent = cartItems.size;
+  cartBadge.classList.toggle('show', cartItems.size > 0);
+  cartList.innerHTML = '';
+  if (cartItems.size === 0) {
+    cartEmpty.style.display = '';
+    cartFooter.style.display = 'none';
+  } else {
+    cartEmpty.style.display = 'none';
+    cartFooter.style.display = '';
+    cartItems.forEach(name => {
+      const li = document.createElement('li');
+      li.innerHTML = `<i class="fa-solid fa-leaf"></i><span style="flex:1">${name}</span><button class="cart-remove" onclick="removeFromCart('${name.replace(/'/g,"\\'")}')"><i class="fa-solid fa-xmark"></i></button>`;
+      cartList.appendChild(li);
+    });
+    const msg = `Hola! Quisiera una cotización para los siguientes servicios:\n${[...cartItems].map(s => `• ${s}`).join('\n')}`;
+    cartWA.href = `https://wa.me/16312047046?text=${encodeURIComponent(msg)}`;
+  }
+}
+
+function addToCart(btn, e) {
+  e.stopPropagation();
+  const name = btn.closest('.card').dataset.service;
+  cartItems.add(name);
+  btn.innerHTML = '<i class="fa-solid fa-check"></i> Agregado';
+  btn.classList.add('added');
+  btn.disabled = true;
+  updateCart();
+}
+
+function removeFromCart(name) {
+  cartItems.delete(name);
+  document.querySelectorAll('.card[data-service]').forEach(card => {
+    if (card.dataset.service === name) {
+      const btn = card.querySelector('.btn-add-cart');
+      btn.innerHTML = '<i class="fa-solid fa-plus"></i> Agregar';
+      btn.classList.remove('added');
+      btn.disabled = false;
+    }
+  });
+  updateCart();
+}
+
+function clearCart() {
+  cartItems.clear();
+  document.querySelectorAll('.btn-add-cart').forEach(btn => {
+    btn.innerHTML = '<i class="fa-solid fa-plus"></i> Agregar';
+    btn.classList.remove('added');
+    btn.disabled = false;
+  });
+  updateCart();
+}
+
+function openCart()  { cartModal.classList.add('open');    document.body.style.overflow = 'hidden'; }
+function closeCart() { cartModal.classList.remove('open'); document.body.style.overflow = ''; }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
+
 /* ── Modal de servicio ── */
 const modal       = document.getElementById('serviceModal');
 const modalTitle  = document.getElementById('modalTitle');
